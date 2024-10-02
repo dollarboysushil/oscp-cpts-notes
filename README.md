@@ -1,6 +1,6 @@
 # oscp-cpts-notes
 
-![](.gitbook/assets/312krCbLBwwnMN1uaOXohoEjSE6Fb8ljaXi7B4zL.webp) ![](.gitbook/assets/image.png)
+![](https://images.credly.com/images/ec81134d-e80b-4eb5-ae07-0eb8e1a60fcd/image.png) ![](https://images.credly.com/images/e63aa507-b974-4e67-bae6-1e425f6e2a99/twitter_thumb_201604_image.png)
 
 
 ## Enhance your reading experience with my GitBook [https://notes.dollarboysushil.com/](https://notes.dollarboysushil.com/)
