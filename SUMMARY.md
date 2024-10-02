@@ -7,3 +7,6 @@
   * [Group Based](linux-privilege-escalation/group-based.md)
   * [Cron Job](linux-privilege-escalation/cron-job.md)
   * [Exploiting NFS weak Permission](linux-privilege-escalation/exploiting-nfs-weak-permission.md)
+  * [Sudo + LD\_PRELOAD (Shared Libraries)](linux-privilege-escalation/sudo-+-ld\_preload-shared-libraries.md)
+  * [Shared Object Manipulation](linux-privilege-escalation/shared-object-manipulation.md)
+  * [Python Library Hijacking](linux-privilege-escalation/python-library-hijacking.md)
