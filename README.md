@@ -1,6 +1,7 @@
 # oscp-cpts-notes
 
-![](https://images.credly.com/images/ec81134d-e80b-4eb5-ae07-0eb8e1a60fcd/image.png) ![](https://academy.hackthebox.com/storage/exam\_badges/312krCbLBwwnMN1uaOXohoEjSE6Fb8ljaXi7B4zL.png)
+<img src="https://images.credly.com/images/ec81134d-e80b-4eb5-ae07-0eb8e1a60fcd/image.png" width="200"/> <img src="https://academy.hackthebox.com/storage/exam_badges/312krCbLBwwnMN1uaOXohoEjSE6Fb8ljaXi7B4zL.png" width="200"/>
+
 
 <figure><img src=".gitbook/assets/notes-legal.png" alt=""><figcaption></figcaption></figure>
 
