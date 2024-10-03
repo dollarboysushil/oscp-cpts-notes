@@ -11,3 +11,7 @@
   * [Sudo + LD\_PRELOAD (Shared Libraries)](linux-privilege-escalation/sudo-+-ld\_preload-shared-libraries.md)
   * [Shared Object Manipulation](linux-privilege-escalation/shared-object-manipulation.md)
   * [Python Library Hijacking](linux-privilege-escalation/python-library-hijacking.md)
+* [Pivoting & Tunneling](pivoting-and-tunneling/README.md)
+  * [Local Port Forwarding](pivoting-and-tunneling/local-port-forwarding.md)
+  * [Remote Port Forwarding](pivoting-and-tunneling/remote-port-forwarding.md)
+  * [Dynamic Port Forwarding](pivoting-and-tunneling/dynamic-port-forwarding.md)
