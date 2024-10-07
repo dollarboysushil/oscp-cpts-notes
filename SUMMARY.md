@@ -15,3 +15,4 @@
   * [Local Port Forwarding](pivoting-and-tunneling/local-port-forwarding.md)
   * [Remote Port Forwarding](pivoting-and-tunneling/remote-port-forwarding.md)
   * [Dynamic Port Forwarding](pivoting-and-tunneling/dynamic-port-forwarding.md)
+  * [Ligolo-ng](pivoting-and-tunneling/ligolo-ng.md)
