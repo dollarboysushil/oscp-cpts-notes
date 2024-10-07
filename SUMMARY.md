@@ -30,3 +30,4 @@
     * [Print Operators](windows-privilege-escalation/group-privileges/print-operators.md)
     * [Event Log Readers](windows-privilege-escalation/group-privileges/event-log-readers.md)
     * [Hyper-V Administrators](windows-privilege-escalation/group-privileges/hyper-v-administrators.md)
+  * [Credential Theft](windows-privilege-escalation/credential-theft.md)
