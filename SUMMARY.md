@@ -31,3 +31,6 @@
     * [Event Log Readers](windows-privilege-escalation/group-privileges/event-log-readers.md)
     * [Hyper-V Administrators](windows-privilege-escalation/group-privileges/hyper-v-administrators.md)
   * [Credential Theft](windows-privilege-escalation/credential-theft.md)
+* [Active Directory Attacks](active-directory-attacks/README.md)
+  * [Enumeration](active-directory-attacks/enumeration.md)
+  * [Initial Foothold](active-directory-attacks/initial-foothold.md)
