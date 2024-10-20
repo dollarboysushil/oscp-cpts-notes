@@ -34,3 +34,5 @@
 * [Active Directory Attacks](active-directory-attacks/README.md)
   * [Enumeration](active-directory-attacks/enumeration.md)
   * [Initial Foothold](active-directory-attacks/initial-foothold.md)
+  * [Gathering Users & Password Policies](active-directory-attacks/gathering-users-and-password-policies.md)
+  * [Password Spraying](active-directory-attacks/password-spraying.md)
