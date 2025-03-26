@@ -2,7 +2,7 @@
 
 **Cron jobs** are scheduled tasks in Unix-like operating systems that automatically execute commands or scripts at specified intervals or times. Managed by the cron daemon, these tasks can be set to run daily, weekly, monthly, or at specific times, allowing for automation of repetitive tasks such as backups, updates, and system maintenance.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can verify whether a cron job is active by using pspy, a command-line utility that allows us to observe running processes without requiring root access. This tool enables us to monitor commands executed by other users, including cron jobs. It operates by scanning the procfs filesystem. To use pspy, we can execute the following command
 
