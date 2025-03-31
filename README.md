@@ -2,7 +2,7 @@
 
 ![](https://images.credly.com/images/ec81134d-e80b-4eb5-ae07-0eb8e1a60fcd/image.png) ![](https://academy.hackthebox.com/storage/exam_badges/312krCbLBwwnMN1uaOXohoEjSE6Fb8ljaXi7B4zL.png)
 
-<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
 ## Enhance your reading experience with my GitBook [https://notes.dollarboysushil.com/](https://notes.dollarboysushil.com/)
 
