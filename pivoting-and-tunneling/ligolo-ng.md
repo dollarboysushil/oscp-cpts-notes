@@ -103,7 +103,7 @@ Meaning we can listen on 10000 to get the reverse shell connection.
 
 ## Transferring File Between Machines
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
