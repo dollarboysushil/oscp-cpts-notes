@@ -49,3 +49,5 @@
     * [Backdooring Files](beyond-oscp-cpts/red-teaming/windows-local-persistence/backdooring-files.md)
     * [Abusing Services](beyond-oscp-cpts/red-teaming/windows-local-persistence/abusing-services.md)
     * [Abusing Scheduled Tasks](beyond-oscp-cpts/red-teaming/windows-local-persistence/abusing-scheduled-tasks.md)
+    * [Logon Triggered Persistence](beyond-oscp-cpts/red-teaming/windows-local-persistence/logon-triggered-persistence.md)
+    * [Backdooring the Login Screen / RDP](beyond-oscp-cpts/red-teaming/windows-local-persistence/backdooring-the-login-screen-rdp.md)
