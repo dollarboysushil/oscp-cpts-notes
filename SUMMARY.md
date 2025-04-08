@@ -40,3 +40,12 @@
   * [Credentialed Enumeration From Windows](active-directory-attacks/credentialed-enumeration-from-windows.md)
   * [Kerberoasting - From Linux](active-directory-attacks/kerberoasting-from-linux.md)
   * [Kerberoasting - From Windows](active-directory-attacks/kerberoasting-from-windows.md)
+
+## Beyond OSCP - CPTS
+
+* [RED TEAMING](beyond-oscp-cpts/red-teaming/README.md)
+  * [Windows Local Persistence](beyond-oscp-cpts/red-teaming/windows-local-persistence/README.md)
+    * [Tampering With Unprivileged Accounts](beyond-oscp-cpts/red-teaming/windows-local-persistence/tampering-with-unprivileged-accounts.md)
+    * [Backdooring Files](beyond-oscp-cpts/red-teaming/windows-local-persistence/backdooring-files.md)
+    * [Abusing Services](beyond-oscp-cpts/red-teaming/windows-local-persistence/abusing-services.md)
+    * [Abusing Scheduled Tasks](beyond-oscp-cpts/red-teaming/windows-local-persistence/abusing-scheduled-tasks.md)

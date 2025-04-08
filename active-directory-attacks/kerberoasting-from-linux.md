@@ -2,7 +2,7 @@
 
 ## Kerberoasting Attack Process
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Step 1: Fix Clock Skew Error
 
