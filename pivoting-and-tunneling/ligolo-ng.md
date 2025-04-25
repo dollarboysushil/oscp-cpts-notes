@@ -13,8 +13,6 @@ For the setup, we need only two files. Agent and Proxy
 Agent: File to be installed on pivot machine\
 Proxy: File to be installed on attacker machine
 
-
-
 ## Attack Scenario 1
 
 <figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
@@ -26,9 +24,9 @@ We cannot ping/access this {172.16.1.15} network from our attacker machine (kali
 Lets get access to this network
 
 In our attacker machine\
-`sudo ip tuntap add user [your_username] mode tun ligolo` \
+`sudo ip tuntap add user [your_username] mode tun ligolo`\
 this will add new tun interface `ligolo`\
-`sudo ip link set ligolo up` \
+`sudo ip link set ligolo up`\
 this will enable the newly created interface `ligolo`
 
 Now we need two file\
@@ -49,14 +47,12 @@ Then transfer the agent file to the pivot machine (ubuntu)
 port `11601` is by default set on proxy in the attacker machine\
 we should use `-autocert` flag when the pivot machine has internet access. This is more secure than `-ignore-cert`
 
-
-
 ### In attacker machine
 
 `session` to list the session and select the session we want to connect\
 `ifconfig or ipconfig` to view the interface of the pivot machine.
 
-Now in new terminal \
+Now in new terminal\
 sudo ip route add `172.16.1.0/24 dev ligolo`\
 here we are adding route for 172.16.1.0/24 network
 
@@ -65,10 +61,8 @@ once the route is set.
 Go back to the terminal where agent is agent is running\
 `start` -> this wll start tunnel to the pivot machine.
 
-
-
 Now we have connection to the `172.16.1.0/24`network\
-Meaning we can view the webserver running  on port 80 of windows `172.16.1.16`
+Meaning we can view the webserver running on port 80 of windows `172.16.1.16`
 
 ## Getting Reverse Shell
 
@@ -84,28 +78,23 @@ We can listen to ports on Agent (pivot machine) and redirect the connection back
 
 we can set this up using
 
-*   In attacker proxy terminal \
+*   In attacker proxy terminal\
     `listener_add --addr 0.0.0.0:30000 --to 127.0.0.1:10000 --tcp`
 
     on the pivot machine, any device or interface on port `30000` will redirect our port `10000`
 
-Which means we can create a payload with \
+Which means we can create a payload with\
 lhost: 172.16.1.15\
 lport: 10000
 
 when the pivot machine gets data on port 30000\
-it will redirecto it to port 10000 on our attacker machine(kali)\
-
+it will redirecto it to port 10000 on our attacker machine(kali)\\
 
 Meaning we can listen on 10000 to get the reverse shell connection.
-
-
 
 ## Transferring File Between Machines
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
 
 To transfer files, we can add another listener.
 
@@ -120,6 +109,6 @@ In windows target machine, download the file using
 Here, windows will send request to port 11111 on pivot (ubuntu) and ligolo-ng will redirect it to port 22222 on our attacker machine\
 \
 \
-More more insight, what this video by John Hammond
+For more insight, watch this video by John Hammond
 
 {% embed url="https://youtu.be/qou7shRlX_s" %}
