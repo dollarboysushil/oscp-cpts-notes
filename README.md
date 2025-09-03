@@ -49,19 +49,12 @@ Access the notes via **GitBook** here:
 
 If you find these notes helpful, let’s connect!  
 
-- 📷 **Instagram:** [@dollarboysushil](https://instagram.com/dollarboysushil)  
+- 🕸️ **Website :** [dollarboysushil.com](https://dollarboysushil.com/)  
 - 🐦 **Twitter (X):** [@dollarboysushil](https://twitter.com/dollarboysushil)  
 - ▶️ **YouTube:** [dollarboysushil](https://youtube.com/dollarboysushil)  
 - 💼 **LinkedIn:** [Sushil Poudel](https://www.linkedin.com/in/dollarboysushil/)  
 - 💬 **Discord:** [Join my community](https://discord.gg/5jpkdeV)
-
----
-
-<p align="center">
-  <a href="https://hits.seeyoufarm.com">
-    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fdollarboysushil%2Foscp-cpts-notes&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false"/>
-  </a>
-</p>
+- 📷 **Instagram:** [@dollarboysushil](https://instagram.com/dollarboysushil)  
 
 ---
 
