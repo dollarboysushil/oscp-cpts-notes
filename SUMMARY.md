@@ -1,6 +1,6 @@
 # Table of contents
 
-* [oscp-cpts-notes](README.md)
+* [🛡️ oscp-cpts-notes](README.md)
 * [Pivoting & Tunneling](pivoting-and-tunneling/README.md)
   * [Local Port Forwarding](pivoting-and-tunneling/local-port-forwarding.md)
   * [Remote Port Forwarding](pivoting-and-tunneling/remote-port-forwarding.md)
