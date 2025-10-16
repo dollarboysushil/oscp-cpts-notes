@@ -54,7 +54,7 @@ If you find these notes helpful, let’s connect!
 
 * 🕸️ **Website :** [dollarboysushil.com](https://dollarboysushil.com/)
 * 🐦 **Twitter (X):** [@dollarboysushil](https://twitter.com/dollarboysushil)
-* ▶️ **YouTube:** [dollarboysushil](https://youtube.com/dollarboysushil)
+* ▶️ **YouTube:** [dollarboysushil](https://youtube.com/dbs-sec)
 * 💼 **LinkedIn:** [Sushil Poudel](https://www.linkedin.com/in/dollarboysushil/)
 * 💬 **Discord:** [Join my community](https://discord.gg/5jpkdeV)
 * 📷 **Instagram:** [@dollarboysushil](https://instagram.com/dollarboysushil)
