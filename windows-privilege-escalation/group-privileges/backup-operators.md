@@ -43,8 +43,7 @@ One of the primary ways to exploit **Backup Operators** is by accessing and extr
     ```
 
     \
-    or from linux\
-
+    or from linux<br>
 
     Using **secretsdump.py**:
 

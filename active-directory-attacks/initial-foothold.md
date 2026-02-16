@@ -57,4 +57,4 @@ For windows, we can use Inveigh [https://github.com/Kevin-Robertson/Inveigh](htt
 
 Once the NTLMv2 Hash is captured, crack with hashcat.
 
-\+ We can use executable (C#) version of Inveigh. C# version is constantly updated.\
+\+ We can use executable (C#) version of Inveigh. C# version is constantly updated.<br>

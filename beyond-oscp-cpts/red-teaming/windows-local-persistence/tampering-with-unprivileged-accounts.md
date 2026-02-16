@@ -62,8 +62,7 @@ In registry Editor rid are stored in hex (1010 = 0x3F2) in little-endin notation
 
 <figure><img src="../../../.gitbook/assets/d630140974989748ebcf150ba0696d14.png" alt=""><figcaption></figcaption></figure>
 
-Then, changing to RID 500 (0x01F4) in little-endian (F401):\
-
+Then, changing to RID 500 (0x01F4) in little-endian (F401):<br>
 
 <figure><img src="../../../.gitbook/assets/8f2072b6d13b7343cf7b890586703ddf.png" alt=""><figcaption></figcaption></figure>
 

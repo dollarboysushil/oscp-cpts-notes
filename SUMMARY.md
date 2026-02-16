@@ -52,3 +52,9 @@
     * [Logon Triggered Persistence](beyond-oscp-cpts/red-teaming/windows-local-persistence/logon-triggered-persistence.md)
     * [Backdooring the Login Screen / RDP](beyond-oscp-cpts/red-teaming/windows-local-persistence/backdooring-the-login-screen-rdp.md)
     * [Persisting Through Existing Services](beyond-oscp-cpts/red-teaming/windows-local-persistence/persisting-through-existing-services.md)
+
+## Web App
+
+* [BugForge](web-app/bugforge/README.md)
+  * [SQL Injection (SQLi)](web-app/bugforge/sql-injection-sqli/README.md)
+    * [Cheesy Does It](web-app/bugforge/sql-injection-sqli/cheesy-does-it.md)
