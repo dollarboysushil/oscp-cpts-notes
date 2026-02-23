@@ -1,7 +1,8 @@
 # Cheesy Does It
 
 Level: Easy\
-Points: 10
+Points: 10\
+Type: Daily Challenge
 
 Lab Interface
 

@@ -15,7 +15,7 @@ Proxy: File to be installed on attacker machine
 
 ## Attack Scenario 1
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 For this first attack scenario, we have our attacker machine (kali) and pivot machine (ubuntu).\
 Pivot machine has an additional network interface (172.16.1.15).\
@@ -66,7 +66,7 @@ Meaning we can view the webserver running on port 80 of windows `172.16.1.16`
 
 ## Getting Reverse Shell
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Lets say we now have access to the windows machine on `172.16.1.0/24` which was previously not routable from our attacker host. Now we want reverse shell connection from that machine (windows).
 
@@ -94,7 +94,7 @@ Meaning we can listen on 10000 to get the reverse shell connection.
 
 ## Transferring File Between Machines
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 To transfer files, we can add another listener.
 
