@@ -60,3 +60,5 @@
     * [Cheesy Does It](web-app/bugforge/sql-injection-sqli/cheesy-does-it.md)
   * [Business Logic Flaw](web-app/bugforge/business-logic-flaw/README.md)
     * [Cheesy Does It](web-app/bugforge/business-logic-flaw/cheesy-does-it.md)
+  * [IDOR - Insecure Direct Object Reference](web-app/bugforge/idor-insecure-direct-object-reference/README.md)
+    * [Tanuki](web-app/bugforge/idor-insecure-direct-object-reference/tanuki.md)
