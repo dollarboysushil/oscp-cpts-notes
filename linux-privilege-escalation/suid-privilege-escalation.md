@@ -4,7 +4,7 @@
 
 **Set User ID (SUID)** is a special permission in Unix/Linux systems. When a file has the SUID bit set, it allows the file to be executed with the privileges of the file's owner, regardless of the user running the file. Typically used to grant regular users temporary elevated permissions to execute specific tasks.
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Indicated by `rws` for the owner’s permission. When the **SUID** bit is set (`s` instead of `x` for execute), any user who runs this file does so with the **permissions of the file owner**. This is commonly used when a file is owned by **root** but allows regular users to execute it with root privileges.
 
@@ -60,5 +60,5 @@ whoami
 root
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

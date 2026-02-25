@@ -2,7 +2,7 @@
 
 Remote port forwarding is a technique used to forward traffic from a port on a remote server (the SSH server) to a specified local host and port. This allows services on the attacker's local machine to be accessed from the remote machine or other machines on the remote network.
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 lets say we want to access the webserver running on port 80 of windows (172.16.1.16) machine.\
 Currently we (kali) and target(windows) are not in same subnet, so we cannot make connection.

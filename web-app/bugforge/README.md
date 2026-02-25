@@ -4,7 +4,7 @@ description: Contains writeup for various BugForge labs.
 
 # BugForge
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 **BugForge** is a hands-on bug bounty training platform that provides daily and weekly labs designed to simulate real-world web application vulnerabilities. The platform focuses on practical exploitation, helping security researchers improve their skills in identifying, exploiting, and reporting vulnerabilities in realistic environments.
 

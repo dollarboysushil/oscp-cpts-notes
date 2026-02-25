@@ -44,7 +44,7 @@ For example, `.txt` is associated with `txtfile`  Programmatic ID (progid). prog
 
 We can further check the subkey of progid under `shell\open\command`
 
-<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 When we try to open .txt file, then system executes `%SystemRoot%\system32\NOTEPAD.EXE %1`, where `%1` represents the name of the opened file.
 

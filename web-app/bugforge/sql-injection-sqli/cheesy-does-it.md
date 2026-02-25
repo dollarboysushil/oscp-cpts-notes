@@ -6,7 +6,7 @@ Type: Daily Challenge
 
 Lab Interface
 
-<figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 trying simple sqli payload, lets us login as admin
 
