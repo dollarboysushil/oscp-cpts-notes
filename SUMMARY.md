@@ -64,3 +64,5 @@
     * [Tanuki](web-app/bugforge/idor-insecure-direct-object-reference/tanuki.md)
   * [Broken Access Control](web-app/bugforge/broken-access-control/README.md)
     * [CopyPasta](web-app/bugforge/broken-access-control/copypasta.md)
+  * [Local File Inclusion (LFI)](web-app/bugforge/local-file-inclusion-lfi/README.md)
+    * [Cafe Club](web-app/bugforge/local-file-inclusion-lfi/cafe-club.md)
