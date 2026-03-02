@@ -63,6 +63,7 @@
   * [IDOR - Insecure Direct Object Reference](web-app/bugforge/idor-insecure-direct-object-reference/README.md)
     * [Tanuki](web-app/bugforge/idor-insecure-direct-object-reference/tanuki.md)
   * [Broken Access Control](web-app/bugforge/broken-access-control/README.md)
+    * [Cheesy Does It](web-app/bugforge/broken-access-control/cheesy-does-it.md)
     * [CopyPasta](web-app/bugforge/broken-access-control/copypasta.md)
   * [Local File Inclusion (LFI)](web-app/bugforge/local-file-inclusion-lfi/README.md)
     * [Cafe Club](web-app/bugforge/local-file-inclusion-lfi/cafe-club.md)
