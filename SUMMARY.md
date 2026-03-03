@@ -67,3 +67,5 @@
     * [CopyPasta](web-app/bugforge/broken-access-control/copypasta.md)
   * [Local File Inclusion (LFI)](web-app/bugforge/local-file-inclusion-lfi/README.md)
     * [Cafe Club](web-app/bugforge/local-file-inclusion-lfi/cafe-club.md)
+  * [SSRF (Server-Side Request Forgery)](web-app/bugforge/ssrf-server-side-request-forgery/README.md)
+    * [Tanuki](web-app/bugforge/ssrf-server-side-request-forgery/tanuki.md)
