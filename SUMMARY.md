@@ -69,3 +69,5 @@
     * [Cafe Club](web-app/bugforge/local-file-inclusion-lfi/cafe-club.md)
   * [SSRF (Server-Side Request Forgery)](web-app/bugforge/ssrf-server-side-request-forgery/README.md)
     * [Tanuki](web-app/bugforge/ssrf-server-side-request-forgery/tanuki.md)
+  * [JWT None Algorithm Attack](web-app/bugforge/jwt-none-algorithm-attack/README.md)
+    * [Shady Oaks Financial](web-app/bugforge/jwt-none-algorithm-attack/shady-oaks-financial.md)
