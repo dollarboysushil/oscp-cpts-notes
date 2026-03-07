@@ -58,6 +58,7 @@
 * [BugForge](web-app/bugforge/README.md)
   * [SQL Injection (SQLi)](web-app/bugforge/sql-injection-sqli/README.md)
     * [Cheesy Does It](web-app/bugforge/sql-injection-sqli/cheesy-does-it.md)
+    * [Ottergram](web-app/bugforge/sql-injection-sqli/ottergram.md)
   * [Business Logic Flaw](web-app/bugforge/business-logic-flaw/README.md)
     * [Cheesy Does It](web-app/bugforge/business-logic-flaw/cheesy-does-it.md)
   * [IDOR - Insecure Direct Object Reference](web-app/bugforge/idor-insecure-direct-object-reference/README.md)
