@@ -74,3 +74,5 @@
     * [Tanuki](web-app/bugforge/ssrf-server-side-request-forgery/tanuki.md)
   * [JWT None Algorithm Attack](web-app/bugforge/jwt-none-algorithm-attack/README.md)
     * [Shady Oaks Financial](web-app/bugforge/jwt-none-algorithm-attack/shady-oaks-financial.md)
+  * [Mass Assignment](web-app/bugforge/mass-assignment/README.md)
+    * [Tanuki](web-app/bugforge/mass-assignment/tanuki.md)
