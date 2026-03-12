@@ -63,6 +63,7 @@
     * [Cheesy Does It](web-app/bugforge/business-logic-flaw/cheesy-does-it.md)
     * [Cafe Club](web-app/bugforge/business-logic-flaw/cafe-club.md)
     * [Cheesy Does It](web-app/bugforge/business-logic-flaw/cheesy-does-it-1.md)
+    * [Sokudo](web-app/bugforge/business-logic-flaw/sokudo.md)
   * [IDOR - Insecure Direct Object Reference](web-app/bugforge/idor-insecure-direct-object-reference/README.md)
     * [Tanuki](web-app/bugforge/idor-insecure-direct-object-reference/tanuki.md)
     * [CopyPasta](web-app/bugforge/idor-insecure-direct-object-reference/copypasta.md)
