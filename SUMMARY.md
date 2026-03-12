@@ -65,6 +65,7 @@
     * [Cheesy Does It](web-app/bugforge/business-logic-flaw/cheesy-does-it-1.md)
   * [IDOR - Insecure Direct Object Reference](web-app/bugforge/idor-insecure-direct-object-reference/README.md)
     * [Tanuki](web-app/bugforge/idor-insecure-direct-object-reference/tanuki.md)
+    * [CopyPasta](web-app/bugforge/idor-insecure-direct-object-reference/copypasta.md)
   * [Broken Access Control](web-app/bugforge/broken-access-control/README.md)
     * [Cheesy Does It](web-app/bugforge/broken-access-control/cheesy-does-it.md)
     * [CopyPasta](web-app/bugforge/broken-access-control/copypasta.md)
