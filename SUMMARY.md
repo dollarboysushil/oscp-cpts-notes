@@ -78,3 +78,5 @@
     * [Shady Oaks Financial](web-app/bugforge/jwt-none-algorithm-attack/shady-oaks-financial.md)
   * [Mass Assignment](web-app/bugforge/mass-assignment/README.md)
     * [Tanuki](web-app/bugforge/mass-assignment/tanuki.md)
+  * [GraphQL IDOR](web-app/bugforge/graphql-idor/README.md)
+    * [Ottergram](web-app/bugforge/graphql-idor/ottergram.md)
