@@ -14,7 +14,7 @@ Intersting request
 GET /api/profile/sushil
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Possible SQLi in path parameter.\
 Using simple payload `' or 1=1 -- -` proves this parameter is indeed vulnerable to sqli

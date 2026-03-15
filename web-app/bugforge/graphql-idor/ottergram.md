@@ -6,11 +6,11 @@ Type: Daily Challenge
 
 After sign-up / login flow. There is a POST request to /graphql which fetch the analytics.
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 Viewing it in proper format
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We can edit the userId field and get analytics of another user.\
 admin's userid is 2
@@ -65,7 +65,7 @@ Lets get the username and password data.
 
 ```
 query {
-  user(id: 1) {
+  user(id: 2) {
     id
     username
     email
@@ -75,4 +75,5 @@ query {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
