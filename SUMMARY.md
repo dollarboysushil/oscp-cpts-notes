@@ -80,3 +80,5 @@
     * [Tanuki](web-app/bugforge/mass-assignment/tanuki.md)
   * [GraphQL IDOR](web-app/bugforge/graphql-idor/README.md)
     * [Ottergram](web-app/bugforge/graphql-idor/ottergram.md)
+  * [XXE](web-app/bugforge/xxe/README.md)
+    * [Tanuki](web-app/bugforge/xxe/tanuki.md)

@@ -12,7 +12,7 @@ Discount code `PIZZA-10` is provided.
 
 During order checkout, we have option to add discount code.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Its respective request is
 

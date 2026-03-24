@@ -10,7 +10,7 @@ Sign up flow
 
 during signup, role parameter is passed, edit it to admin.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Account created with admin role.
 
