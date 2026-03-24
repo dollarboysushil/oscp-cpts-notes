@@ -82,7 +82,7 @@ Note: edit the file extension and content-type during upload
 
 <figure><img src="../../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
 
-To make it easier to work with, I compacted the XML length and keeping card count to only one
+To make it easier to work with, I compacted the XML length, keeping card count to only one
 
 <figure><img src="../../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
 
