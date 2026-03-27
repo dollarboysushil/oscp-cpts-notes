@@ -82,3 +82,5 @@
     * [Ottergram](web-app/bugforge/graphql-idor/ottergram.md)
   * [XXE](web-app/bugforge/xxe/README.md)
     * [Tanuki](web-app/bugforge/xxe/tanuki.md)
+  * [Race Condition](web-app/bugforge/race-condition/README.md)
+    * [Shady Oaks Financial](web-app/bugforge/race-condition/shady-oaks-financial.md)
