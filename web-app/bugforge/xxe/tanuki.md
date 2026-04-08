@@ -6,7 +6,7 @@ Type: Daily Challenge
 
 We have option to import decks
 
-<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 The thing that directly picks my eye is ability to import deck in XML format.
 
@@ -116,16 +116,16 @@ To bypass this I used `XInclude` payload from [https://hacktricks.wiki/en/pentes
 </deck>
 ```
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
 Then I opened the imported dec
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The payload works and loads the content of `/etc/passwd` \[Flag is somewhere else]
 
 after little of search, I found the flag in current directory
 
-<figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>

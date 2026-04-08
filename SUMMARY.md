@@ -59,6 +59,7 @@
   * [SQL Injection (SQLi)](web-app/bugforge/sql-injection-sqli/README.md)
     * [Cheesy Does It](web-app/bugforge/sql-injection-sqli/cheesy-does-it.md)
     * [Ottergram](web-app/bugforge/sql-injection-sqli/ottergram.md)
+    * [CopyPasta](web-app/bugforge/sql-injection-sqli/copypasta.md)
   * [Business Logic Flaw](web-app/bugforge/business-logic-flaw/README.md)
     * [Cheesy Does It](web-app/bugforge/business-logic-flaw/cheesy-does-it.md)
     * [Cafe Club](web-app/bugforge/business-logic-flaw/cafe-club.md)
