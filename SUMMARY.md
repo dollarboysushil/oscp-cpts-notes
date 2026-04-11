@@ -71,6 +71,7 @@
   * [Broken Access Control](web-app/bugforge/broken-access-control/README.md)
     * [Cheesy Does It](web-app/bugforge/broken-access-control/cheesy-does-it.md)
     * [CopyPasta](web-app/bugforge/broken-access-control/copypasta.md)
+    * [Ottergram](web-app/bugforge/broken-access-control/ottergram.md)
   * [Local File Inclusion (LFI)](web-app/bugforge/local-file-inclusion-lfi/README.md)
     * [Cafe Club](web-app/bugforge/local-file-inclusion-lfi/cafe-club.md)
   * [SSRF (Server-Side Request Forgery)](web-app/bugforge/ssrf-server-side-request-forgery/README.md)
