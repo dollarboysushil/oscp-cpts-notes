@@ -67,6 +67,7 @@
     * [Sokudo](web-app/bugforge/business-logic-flaw/sokudo.md)
   * [IDOR - Insecure Direct Object Reference](web-app/bugforge/idor-insecure-direct-object-reference/README.md)
     * [Tanuki](web-app/bugforge/idor-insecure-direct-object-reference/tanuki.md)
+    * [Tanuki - 2](web-app/bugforge/idor-insecure-direct-object-reference/tanuki-2.md)
     * [CopyPasta](web-app/bugforge/idor-insecure-direct-object-reference/copypasta.md)
   * [Broken Access Control](web-app/bugforge/broken-access-control/README.md)
     * [Cheesy Does It](web-app/bugforge/broken-access-control/cheesy-does-it.md)
