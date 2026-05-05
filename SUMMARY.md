@@ -65,6 +65,7 @@
     * [Cafe Club](web-app/bugforge/business-logic-flaw/cafe-club.md)
     * [Cheesy Does It](web-app/bugforge/business-logic-flaw/cheesy-does-it-1.md)
     * [Sokudo](web-app/bugforge/business-logic-flaw/sokudo.md)
+    * [Cheesy Does It  (forgot\_password flaw)](web-app/bugforge/business-logic-flaw/cheesy-does-it-forgot_password-flaw.md)
   * [IDOR - Insecure Direct Object Reference](web-app/bugforge/idor-insecure-direct-object-reference/README.md)
     * [Tanuki](web-app/bugforge/idor-insecure-direct-object-reference/tanuki.md)
     * [Tanuki - 2](web-app/bugforge/idor-insecure-direct-object-reference/tanuki-2.md)
