@@ -120,7 +120,7 @@ To bypass this I used `XInclude` payload from [https://hacktricks.wiki/en/pentes
 
 Then I opened the imported dec
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The payload works and loads the content of `/etc/passwd` \[Flag is somewhere else]
 

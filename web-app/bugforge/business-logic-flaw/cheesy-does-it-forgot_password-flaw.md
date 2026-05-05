@@ -6,11 +6,11 @@ Type: Daily Challenge
 
 During register/login we can see forgot password feature.
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 Forgot-password takes only one arguement i.e `username` , we can pass any username here.
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Once username is passed, OTP is sent to account's email address. The ui doesnot takes the value more than 4 digit.\
 Meaning we can try to bruteforce the OTP.
@@ -30,7 +30,7 @@ POST request to /api/verify-token with values of&#x20;
 * `reset_token`&#x20;
 * `new_password`
 
-<figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 Password successfully changed.
 
