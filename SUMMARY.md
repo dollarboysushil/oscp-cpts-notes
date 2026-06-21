@@ -71,6 +71,7 @@
     * [Tanuki - 2](web-app/bugforge/idor-insecure-direct-object-reference/tanuki-2.md)
     * [CopyPasta](web-app/bugforge/idor-insecure-direct-object-reference/copypasta.md)
   * [Broken Access Control](web-app/bugforge/broken-access-control/README.md)
+    * [Tanuki](web-app/bugforge/broken-access-control/tanuki.md)
     * [Cheesy Does It](web-app/bugforge/broken-access-control/cheesy-does-it.md)
     * [CopyPasta](web-app/bugforge/broken-access-control/copypasta.md)
     * [Ottergram](web-app/bugforge/broken-access-control/ottergram.md)
