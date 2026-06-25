@@ -70,6 +70,7 @@
     * [Tanuki](web-app/bugforge/idor-insecure-direct-object-reference/tanuki.md)
     * [Tanuki - 2](web-app/bugforge/idor-insecure-direct-object-reference/tanuki-2.md)
     * [CopyPasta](web-app/bugforge/idor-insecure-direct-object-reference/copypasta.md)
+    * [CopyPaste - Slug](web-app/bugforge/idor-insecure-direct-object-reference/copypaste-slug.md)
   * [Broken Access Control](web-app/bugforge/broken-access-control/README.md)
     * [Tanuki](web-app/bugforge/broken-access-control/tanuki.md)
     * [Cheesy Does It](web-app/bugforge/broken-access-control/cheesy-does-it.md)
