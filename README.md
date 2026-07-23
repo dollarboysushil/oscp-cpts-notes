@@ -7,9 +7,9 @@
 ## 📖 Overview
 
 Welcome to my **OSCP & CPTS Notes** repository!\
-I have successfully completed the **Hack The Box CPTS** certification, and these notes capture my entire learning journey — covering everything from fundamentals to advanced penetration testing concepts.
+I have successfully completed the **Hack The Box CPTS** certification, and these notes capture my entire learning journey, covering everything from fundamentals to advanced penetration testing concepts.
 
-Although I have not yet started the **OSCP** exam, much of the CPTS material overlaps with OSCP preparation. That’s why I’ve organized these notes as **OSCP + CPTS notes** — so they can serve as a valuable study companion for anyone pursuing either certification.
+Although I have not yet started the **OSCP** exam, much of the CPTS material overlaps with OSCP preparation. That’s why I’ve organized these notes as **OSCP + CPTS notes,** so they can serve as a valuable study companion for anyone pursuing either certification.
 
 These notes are continuously updated with new topics, improved explanations, and practical methodologies to help readers build a strong penetration testing mindset, not just pass an exam.
 
