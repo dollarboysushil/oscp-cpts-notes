@@ -1,6 +1,6 @@
 # 🛡️ oscp-cpts-notes
 
-<div align="center"><img src="https://images.credly.com/images/ec81134d-e80b-4eb5-ae07-0eb8e1a60fcd/image.png" alt="OSCP Badge" width="120"> <img src="https://academy.hackthebox.com/storage/exam_badges/312krCbLBwwnMN1uaOXohoEjSE6Fb8ljaXi7B4zL.png" alt="CPTS Badge" width="120"></div>
+<div align="center"><img src="https://images.credly.com/images/ec81134d-e80b-4eb5-ae07-0eb8e1a60fcd/image.png" alt="OSCP Badge" width="188"> <img src=".gitbook/assets/cpts-logo.png" alt="CPTS Badge" width="188"></div>
 
 ***
 
