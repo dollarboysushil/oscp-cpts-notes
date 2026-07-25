@@ -1,6 +1,6 @@
 # JWT Overview
 
-1. What a JWT actually is
+## 1. What a JWT actually is
 
 A JWT (JSON Web Token) is a compact way to represent claims between two parties, signed (and optionally encrypted) so the receiver can verify they haven't been tampered with. It's **not encryption by default** - it's signed, meaning anyone can read the contents, but only the holder of the secret/key can produce a valid signature.
 

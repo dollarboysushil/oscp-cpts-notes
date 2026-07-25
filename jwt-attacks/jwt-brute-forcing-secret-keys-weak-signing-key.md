@@ -1,6 +1,6 @@
 # JWT Brute-forcing secret keys (weak signing key)
 
-What it is:\*\*\
+**What it is:**\
 HS256 uses a plain string as the secret key. If it's weak, default, or copy-pasted from example code/docs, an attacker can brute-force it offline.
 
 **Why it works:**\

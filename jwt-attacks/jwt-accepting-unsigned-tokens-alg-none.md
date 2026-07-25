@@ -1,6 +1,6 @@
 # JWT Accepting Unsigned Tokens (alg: none)
 
-What it is:\*\*\
+**What it is:**\
 The JWT spec allows an unsigned token via `alg: none` (an "unsecured JWT"). If the server trusts the `alg` header to decide _how_ to verify, an attacker can just set `alg: none`, strip the signature, and the server skips verification entirely.
 
 **Why it works:**\
