@@ -1,0 +1,28 @@
+# Lab 3 JWT authentication bypass via weak signing key
+
+This lab uses a JWT-based mechanism for handling sessions. It uses an extremely weak secret key to both sign and verify tokens. This can be easily brute-forced using a [wordlist of common secrets](https://github.com/wallarm/jwt-secrets/blob/master/jwt.secrets.list).
+
+To solve the lab, first brute-force the website's secret key. Once you've obtained this, use it to sign a modified session token that gives you access to the admin panel at `/admin`, then delete the user `carlos`.
+
+You can log in to your own account using the following credentials: `wiener:peter`
+
+***
+
+**Vuln:** Server signs/verifies with a weak, dictionary-guessable HMAC secret.
+
+**Steps:**
+
+1. Log in as `wiener`, capture session JWT.
+2. Confirm `/admin` requires `sub: administrator`.
+3. Brute-force the secret using JWT Editor's "Weak HMAC Secret" attack (loads a wordlist, tries each as HMAC key) → found `secret1`.
+4. In JWT Editor Keys tab, create a new symmetric key, set `k` to the secret (Base64-encoded).
+5. Edit `sub` claim → `administrator`.
+6. Sign the token with the recovered key (keep header unchanged).
+7. Send to `/admin` → access granted.
+8. Delete `carlos` via `/admin/delete?username=carlos`.
+
+**Root cause:** Weak/predictable secret means anyone can recompute valid signatures offline - signature verification is technically "working," but the key itself provides no real security.
+
+**Fix:** Use a long, high-entropy, randomly generated secret (or better, asymmetric algorithms) - never a dictionary word or common string.
+
+<figure><img src="../../.gitbook/assets/image (83).png" alt=""><figcaption></figcaption></figure>

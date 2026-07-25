@@ -1,0 +1,30 @@
+# Lab 5 JWT authentication bypass via jku header injection
+
+This lab uses a JWT-based mechanism for handling sessions. The server supports the `jku` parameter in the JWT header. However, it fails to check whether the provided URL belongs to a trusted domain before fetching the key.
+
+To solve the lab, forge a JWT that gives you access to the admin panel at `/admin`, then delete the user `carlos`.
+
+You can log in to your own account using the following credentials: `wiener:peter`
+
+***
+
+**Vuln:** Server fetches the verification key from whatever URL is specified in the `jku` header, without checking if that URL belongs to a trusted domain.
+
+**Steps:**
+
+1. Log in as `wiener`, capture session JWT, send to Repeater. Confirm `/admin` requires `sub: administrator`.
+2. Generate a new RSA key pair in JWT Editor Keys tab.
+3. On the exploit server, host a JWK Set (`{ "keys": [...] }`) containing the **public key** (copied as JWK from the generated key), and store it - this gives you a URL serving your malicious key set.
+4. In the JWT header:
+   * Set `kid` to match the `kid` of your hosted public key.
+   * Add `jku` pointing to your hosted JWK Set URL.
+5. In the payload, change `sub` → `administrator`.
+6. Sign the token with your **private** key (via JWT Editor's Sign feature, header untouched otherwise).
+7. Send to `/admin` → access granted, since the server fetches your JWK Set and verifies using your own key.
+8. Delete `carlos` via `/admin/delete?username=carlos`.
+
+**Root cause:** Server trusts an attacker-supplied `jku` URL to fetch verification keys from, instead of only using its own trusted/allowlisted key source.
+
+**Fix:** Ignore `jku` entirely, or strictly allowlist trusted domains for key fetching (validated properly, not via naive string matching - vulnerable to the same bypasses as SSRF whitelist filters).
+
+<figure><img src="../../.gitbook/assets/image (85).png" alt=""><figcaption></figcaption></figure>

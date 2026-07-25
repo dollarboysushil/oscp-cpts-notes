@@ -1,0 +1,26 @@
+# Lab 2 JWT authentication bypass via flawed signature verification
+
+This lab uses a JWT-based mechanism for handling sessions. The server is insecurely configured to accept unsigned JWTs.
+
+To solve the lab, modify your session token to gain access to the admin panel at `/admin`, then delete the user `carlos`.
+
+You can log in to your own account using the following credentials: `wiener:peter`
+
+***
+
+**Vuln:** Server accepts unsigned (`alg: none`) tokens.
+
+**Steps:**
+
+1. Log in as `wiener`, capture session JWT.
+2. Change `sub` claim → `administrator`.
+3. Change header `alg` → `none`.
+4. Strip signature, keep trailing dot (`header.payload.`).
+5. Send to `/admin` → access granted.
+6. Delete `carlos` via `/admin/delete?username=carlos`.
+
+**Root cause:** Server trusts `alg` from the token instead of enforcing it server-side.
+
+**Fix:** Whitelist accepted algorithms server-side; explicitly reject `none`.
+
+<figure><img src="../../.gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>

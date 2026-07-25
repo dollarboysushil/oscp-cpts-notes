@@ -1,0 +1,65 @@
+# Lab 1 JWT authentication bypass via unverified signature
+
+Summary
+
+This lab uses a JWT-based session mechanism. The server decodes and trusts the claims inside the JWT but never actually verifies the signature. This means any claim in the payload - including the username used for authorization decisions - can be freely tampered with, since no cryptographic check ever catches the modification.
+
+**Steps**
+
+**1. Log in with the provided low-privilege credentials** (`wiener:peter`) and capture the session JWT:
+
+```
+eyJraWQiOiI4NGExMzEwNS0xYzU5LTRhZDgtODRlOC0yNjRkMDJlZmQ3ODMiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJwb3J0c3dpZ2dlciIsImV4cCI6MTc4NDkxMjUyMSwic3ViIjoid2llbmVyIn0.TgVDYjBjV6PZVziLktEAyThLPvE1hDnLbfulOtI2eLZhOhL6P_yVZCtf3WySQxKn2DfM3VCiMPIWCy91Ed4CrCZQx29F0WR2mfLYEtWe-V69sv5TKYvkPWfPLBPABilaQBw9n3PjW8YdvTf0vP0hYbvX0W_Kh0fv5OwltU0jEd8yz_dnNd931qNa4KpUddpbQX76jleoTA0-of24Dhc3ocWWTvxijNrwwNXKSNmjB4Pb7o5ea5Mfkxbw2c4na48fVdK-xxUMZChH0UpR3Gugd3E91unVE4cIVBf99bjogdoPg31pLiIGZXj0NFpxYXmZIvvVKRE9T3fEQfC-wofc9Q
+```
+
+Decoded payload:
+
+```json
+{
+  "iss": "portswigger",
+  "exp": 1784912521,
+  "sub": "wiener"
+}
+```
+
+The `sub` claim holds the username used to identify the logged-in user.
+
+**2. Probe the target endpoint.** Visiting `/admin` while authenticated as `wiener` returns:
+
+<figure><img src="../../.gitbook/assets/image (80).png" alt=""><figcaption></figcaption></figure>
+
+```
+Admin interface only available if logged in as an administrator
+```
+
+This confirms `/admin` performs an authorization check based on the identity carried in the session - likely straight off the `sub` claim.
+
+**3. Tamper with the `sub` claim.** First attempt: change `sub` to `admin` - no effect, user doesn't exist under that name. Second attempt: change `sub` to `administrator` - this matches the actual privileged account's username.
+
+<figure><img src="../../.gitbook/assets/image (81).png" alt=""><figcaption></figcaption></figure>
+
+
+
+**4. Re-encode and replay.** Base64url-encode the modified payload, reassemble the token as `header.payload.<original-or-any-signature>`, and send it. The server accepts it without validating the signature.
+
+**5. Access `/admin`** - now authorized as `administrator`. Delete user `carlos` to complete the lab.
+
+***
+
+#### Problem
+
+The root cause is a **missing signature verification step** on the server side. The application:
+
+* Decodes the JWT and reads claims directly (`sub`, presumably used for a session/user lookup) without ever calling a verification function that checks the signature against a known key.
+* As a result, the JWT provides zero integrity guarantee in this implementation - it behaves like an unsigned, freely editable cookie. Anyone can forge arbitrary claims, including `sub=administrator`, without knowing any secret or private key.
+* This is the most basic failure mode in the JWT trust model: the entire security of JWT-based auth rests on the signature actually being checked on every request that relies on claim values. Skip that check, and the "signature" segment is decorative - it doesn't matter what's in it, or even if it's present at all.
+
+This is distinct from `alg:none` attacks or algorithm confusion - those exploit the _verification logic_ being fooled. Here there's no verification logic running at all. It's the simplest and most severe variant of the bug class.
+
+#### Prevention
+
+* **Always verify the signature on every request**, before trusting any claim in the payload. Use the verification function provided by a well-maintained JWT library (`jwt.verify()` / `jwt.decode(..., verify=True)`), never a "decode-only" convenience function in security-sensitive code paths.
+* **Explicitly pin the expected algorithm(s) server-side** rather than reading `alg` from the token, so verification can't be silently skipped or downgraded (relevant for later labs, but good practice regardless).
+* **Fail closed.** If signature verification throws/fails, reject the request immediately - don't fall through to claim-based logic.
+* **Treat JWT claims as untrusted input until verified**, the same way you'd treat any other user-controlled data. Authorization decisions (`is this user an admin?`) should never be made on unverified data.
+* Where possible, use a JWT library's high-level "verify and decode" API rather than manually splitting/parsing/decoding the token - manual handling is exactly how this check gets accidentally skipped.

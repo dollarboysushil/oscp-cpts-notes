@@ -1,0 +1,81 @@
+# Lab 4 JWT authentication bypass via jwk header injection
+
+This lab uses a JWT-based mechanism for handling sessions. The server supports the `jwk` parameter in the JWT header. This is sometimes used to embed the correct verification key directly in the token. However, it fails to check whether the provided key came from a trusted source.
+
+To solve the lab, modify and sign a JWT that gives you access to the admin panel at `/admin`, then delete the user `carlos`.
+
+You can log in to your own account using the following credentials: `wiener:peter`
+
+***
+
+**Vuln:** Server accepts a self-embedded public key (`jwk` header) for signature verification instead of using its own trusted keystore.
+
+**Steps:**
+
+1. Log in as `wiener`, capture session JWT, send to Repeater.
+2. Confirm `/admin` requires `sub: administrator`.
+3. In JWT Editor Keys tab, generate a new RSA key pair.
+4. Edit payload: `sub → administrator`.
+5. Click **Attack → Embedded JWK**, select the generated key.
+6. Extension signs the token with the private key and embeds the matching public key + `kid` into the header automatically.
+7. Send to `/admin` → access granted.
+8. Delete `carlos` via `/admin/delete?username=carlos`.
+
+**Root cause:** Server verifies using whatever key the token supplies (`jwk`), instead of only trusting keys from its own pre-approved keystore.
+
+**Fix:** Ignore embedded `jwk` headers entirely; verify only against a fixed, server-side whitelist of trusted keys.
+
+<figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
+
+Header becomes
+
+```
+{  
+    "kid": "5549f124-5796-404b-9ce2-418712633465",  
+    "typ": "JWT",  
+    "alg": "RS256",  
+    "jwk": {  
+        "kty": "RSA",  
+        "e": "AQAB",  
+        "kid": "5549f124-5796-404b-9ce2-418712633465",  
+        "n": "yzV7Pa5cklwgsRKvcNOJ_TBA8ZZjbqoMg83evqmz3ujmRrfiobC-ei6sCLGx_hsPza4Aexf8TYkVIggkSk0xYDCsIawybUAJchSc6bSuZ0mS8Wh-_6rqLg-i1AJDCbS_aGgytYr5JjAxU6bExZ9M5fOoGk07Sy8l97GHwzwHt3xZWoM5iYRh0OIJ3sECBInYiDE0jo2fw3rRMaqt0nAhH4Y_0Dxw3tguOi_7UkUWFwUg-Apau7grXm-QJsyMMp7srS1g4ErUomcbPxvz10yoOTJuhZBLvMTZ7UmPCfpEuBnW8EgWKIIZ-QYZ8ngeoAawvgGNJgI4qctJtNE6VosY_w"  
+    }  
+}
+```
+
+Understanding the Forged `jwk` Header
+
+**Field-by-field**
+
+| Field                | Meaning                                                         |
+| -------------------- | --------------------------------------------------------------- |
+| `alg: RS256`         | Tells server to verify using RSA-SHA256                         |
+| `kid` (top-level)    | ID used by server's key-lookup logic to pick a key              |
+| `jwk`                | Embedded JSON Web Key - the **public key** to verify with       |
+| `kty: RSA`           | Key type = RSA                                                  |
+| `e: AQAB`            | Public exponent (standard value, 65537)                         |
+| `n`                  | RSA modulus - the actual public key material, base64url-encoded |
+| `kid` (inside `jwk`) | Matches the outer `kid`, so lookup logic links the two          |
+
+**Key point:** The `n`/`e` pair is the public half of a key pair _you generated yourself_. You hold the private key locally - the server has never seen it before and doesn't need to.
+
+**What you did to get here**
+
+1. Generated your own RSA key pair (unrelated to server's real key).
+2. Edited payload: `sub → administrator`.
+3. Signed the token using **your private key**.
+4. Embedded **your public key** in `jwk`, with matching `kid`.
+
+**What the server does with this token**
+
+1. Reads `alg: RS256` → prepares RSA verification.
+2. Sees `jwk` in header → extracts `n`/`e` → builds a public key object from it directly (instead of pulling a key from its own trusted store).
+3. Runs: `rsa_verify(embedded_public_key, signing_input, signature)`.
+4. **Verification succeeds** - not because of any crypto weakness, but because you supplied both the signature _and_ the matching public key. Mathematically, of course they match.
+5. Server treats token as authentic → reads `sub: administrator` → grants admin access.
+
+**The one-line takeaway**
+
+> Server asks "does the signature match this key?" - not "should I trust this key?" You supplied both the signature and the key, so the check passes by construction.
+
+A secure server would ignore `jwk` entirely and only verify against keys from its own internal, pre-approved keystore.
