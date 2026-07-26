@@ -114,3 +114,5 @@
   * [Infromation Disclosure (Labs: Portswigger Academy)](information-disclosure/infromation-disclosure-labs-portswigger-academy.md)
 * [Race Conditions](race-conditions/README.md)
   * [Race Conditions (Labs: Portswigger Academy)](race-conditions/race-conditions-labs-portswigger-academy.md)
+* [Access Control Vulnerabilities](access-control-vulnerabilities/README.md)
+  * [Access Control Vulnerabilities (Labs: PortSwigger Academy)](access-control-vulnerabilities/access-control-vulnerabilities-labs-portswigger-academy.md)
