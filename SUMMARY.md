@@ -94,7 +94,6 @@
   * [Race Condition](bugforge/race-condition/README.md)
     * [Shady Oaks Financial](bugforge/race-condition/shady-oaks-financial.md)
 * [JWT ATTACKS](jwt-attacks/README.md)
-  * [JWT Overview](jwt-attacks/jwt-overview.md)
   * [JWT Signature Verification Bypass](jwt-attacks/jwt-signature-verification-bypass.md)
   * [JWT Accepting Unsigned Tokens (alg: none)](jwt-attacks/jwt-accepting-unsigned-tokens-alg-none.md)
   * [JWT Brute-forcing secret keys (weak signing key)](jwt-attacks/jwt-brute-forcing-secret-keys-weak-signing-key.md)
@@ -107,3 +106,5 @@
     * [Lab 4 JWT authentication bypass via jwk header injection](jwt-attacks/jwt-attack-labs/lab-4-jwt-authentication-bypass-via-jwk-header-injection.md)
     * [Lab 5 JWT authentication bypass via jku header injection](jwt-attacks/jwt-attack-labs/lab-5-jwt-authentication-bypass-via-jku-header-injection.md)
     * [Lab 6 JWT authentication bypass via kid header path traversal](jwt-attacks/jwt-attack-labs/lab-6-jwt-authentication-bypass-via-kid-header-path-traversal.md)
+* [Authentication Attacks](authentication-attacks/README.md)
+  * [Authentication Attacks LABS (Portswigger Academy)](authentication-attacks/authentication-attacks-labs-portswigger-academy.md)
