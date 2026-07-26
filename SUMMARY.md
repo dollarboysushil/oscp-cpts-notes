@@ -116,3 +116,5 @@
   * [Race Conditions (Labs: Portswigger Academy)](race-conditions/race-conditions-labs-portswigger-academy.md)
 * [Access Control Vulnerabilities](access-control-vulnerabilities/README.md)
   * [Access Control Vulnerabilities (Labs: PortSwigger Academy)](access-control-vulnerabilities/access-control-vulnerabilities-labs-portswigger-academy.md)
+* [SSRF - Server Side Request Forgery](ssrf-server-side-request-forgery/README.md)
+  * [SSRF (Labs: Portswigger Academy)](ssrf-server-side-request-forgery/ssrf-labs-portswigger-academy.md)
