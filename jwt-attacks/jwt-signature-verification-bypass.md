@@ -14,7 +14,7 @@ JWTs aren't encrypted - the payload is just Base64, readable and editable by any
 4. Re-encode, keep the old signature (or anything, really), send it.
 5. If it still works → signature isn't being checked.
 
-{% content-ref url="jwt-labs/lab-1-jwt-authentication-bypass-via-unverified-signature.md" %}
-[lab-1-jwt-authentication-bypass-via-unverified-signature.md](jwt-labs/lab-1-jwt-authentication-bypass-via-unverified-signature.md)
+{% content-ref url="jwt-attack-labs/lab-1-jwt-authentication-bypass-via-unverified-signature.md" %}
+[lab-1-jwt-authentication-bypass-via-unverified-signature.md](jwt-attack-labs/lab-1-jwt-authentication-bypass-via-unverified-signature.md)
 {% endcontent-ref %}
 

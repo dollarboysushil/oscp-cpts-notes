@@ -69,6 +69,6 @@ Server picks the key from that array matching the token's `kid`
 Uses that key to verify the JWT's signature
 ```
 
-{% content-ref url="jwt-labs/lab-6-jwt-authentication-bypass-via-kid-header-path-traversal.md" %}
-[lab-6-jwt-authentication-bypass-via-kid-header-path-traversal.md](jwt-labs/lab-6-jwt-authentication-bypass-via-kid-header-path-traversal.md)
+{% content-ref url="jwt-attack-labs/lab-6-jwt-authentication-bypass-via-kid-header-path-traversal.md" %}
+[lab-6-jwt-authentication-bypass-via-kid-header-path-traversal.md](jwt-attack-labs/lab-6-jwt-authentication-bypass-via-kid-header-path-traversal.md)
 {% endcontent-ref %}

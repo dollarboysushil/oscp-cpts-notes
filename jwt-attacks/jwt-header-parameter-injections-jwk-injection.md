@@ -61,6 +61,6 @@ All three exploit the same trust failure: **verification key selection must be c
 * Restrict `jku` fetches to an allowlist of trusted domains (and ideally never trust it at all).
 * Sanitize `kid` rigorously if used for lookups, treating it as untrusted input - never as raw a file path or query parameter.
 
-{% content-ref url="jwt-labs/lab-4-jwt-authentication-bypass-via-jwk-header-injection.md" %}
-[lab-4-jwt-authentication-bypass-via-jwk-header-injection.md](jwt-labs/lab-4-jwt-authentication-bypass-via-jwk-header-injection.md)
+{% content-ref url="jwt-attack-labs/lab-4-jwt-authentication-bypass-via-jwk-header-injection.md" %}
+[lab-4-jwt-authentication-bypass-via-jwk-header-injection.md](jwt-attack-labs/lab-4-jwt-authentication-bypass-via-jwk-header-injection.md)
 {% endcontent-ref %}

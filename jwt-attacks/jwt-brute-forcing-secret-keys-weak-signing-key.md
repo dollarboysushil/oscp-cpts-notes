@@ -23,6 +23,6 @@ Anyone with the secret can generate valid signatures for any payload they want -
 **Fix:**\
 Use a long, random, high-entropy secret - never a default, placeholder, or dictionary word. Rotate secrets if ever suspected leaked.
 
-{% content-ref url="jwt-labs/lab-3-jwt-authentication-bypass-via-weak-signing-key.md" %}
-[lab-3-jwt-authentication-bypass-via-weak-signing-key.md](jwt-labs/lab-3-jwt-authentication-bypass-via-weak-signing-key.md)
+{% content-ref url="jwt-attack-labs/lab-3-jwt-authentication-bypass-via-weak-signing-key.md" %}
+[lab-3-jwt-authentication-bypass-via-weak-signing-key.md](jwt-attack-labs/lab-3-jwt-authentication-bypass-via-weak-signing-key.md)
 {% endcontent-ref %}

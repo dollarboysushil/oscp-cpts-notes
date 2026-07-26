@@ -24,6 +24,6 @@ Whitelist allowed algorithms server-side (e.g., only `HS256`), and explicitly re
 
 > Even if the token is unsigned, the payload part must still be terminated with a trailing dot.
 
-{% content-ref url="jwt-labs/lab-2-jwt-authentication-bypass-via-flawed-signature-verification.md" %}
-[lab-2-jwt-authentication-bypass-via-flawed-signature-verification.md](jwt-labs/lab-2-jwt-authentication-bypass-via-flawed-signature-verification.md)
+{% content-ref url="jwt-attack-labs/lab-2-jwt-authentication-bypass-via-flawed-signature-verification.md" %}
+[lab-2-jwt-authentication-bypass-via-flawed-signature-verification.md](jwt-attack-labs/lab-2-jwt-authentication-bypass-via-flawed-signature-verification.md)
 {% endcontent-ref %}
