@@ -122,3 +122,5 @@
   * [CSRF Attacks (Labs: PortSwigger Academy)](csrf-cross-site-request-forgery-attacks/csrf-attacks-labs-portswigger-academy.md)
 * [CORS - Cross-Origin Resource Sharing Attacks](cors-cross-origin-resource-sharing-attacks/README.md)
   * [CORS - Cross-Origin Resource Sharing (Labs: Portswigger Academy)](cors-cross-origin-resource-sharing-attacks/cors-cross-origin-resource-sharing-labs-portswigger-academy.md)
+* [Cross-Site Scripting (XSS)](cross-site-scripting-xss/README.md)
+  * [Cross-Site Scripting (XSS) (Labs: Portswigger Academy)](cross-site-scripting-xss/cross-site-scripting-xss-labs-portswigger-academy.md)
