@@ -110,3 +110,5 @@
   * [Authentication Attacks LABS (Portswigger Academy)](authentication-attacks/authentication-attacks-labs-portswigger-academy.md)
 * [Business Logic Vulnerability](business-logic-vulnerability/README.md)
   * [Business Logic Vulnerability (Labs: Portswigger Academy)](business-logic-vulnerability/business-logic-vulnerability-labs-portswigger-academy.md)
+* [Information Disclosure](information-disclosure/README.md)
+  * [Infromation Disclosure (Labs: Portswigger Academy)](information-disclosure/infromation-disclosure-labs-portswigger-academy.md)
