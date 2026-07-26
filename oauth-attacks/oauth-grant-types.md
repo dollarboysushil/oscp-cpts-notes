@@ -1,0 +1,88 @@
+# OAuth Grant Types
+
+## What is a Grant Type?
+
+The exact sequence of steps ("flow") used to get an access token. Client specifies which one it wants via `response_type` in the initial request. OAuth service must support it.
+
+## Scopes
+
+* Defines what data/access the client is requesting
+* Format is provider-specific: `scope=contacts`, `scope=contacts.read`, full URIs, etc.
+* For **authentication use-cases** → standardized **OpenID Connect** scopes used instead, e.g. `scope=openid profile` → grants read access to basic identity info (email, username)
+
+***
+
+## 1. Authorization Code Grant (most secure, server-side apps)
+
+![](<../.gitbook/assets/unknown (112).png>)
+
+**Core idea:** Get a _code_ first (via browser), then swap it for a token _server-to-server_ (invisible to attacker/browser).
+
+| Step                        | Request                                                                                                  | Notes                                                 |
+| --------------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| 1. Authorization request    | `GET /authorization?client_id=..&redirect_uri=..&response_type=code&scope=..&state=..`                   | Browser-based                                         |
+| 2. Login + consent          | User logs into OAuth provider, approves scopes                                                           | Auto-approved on repeat visits if session still valid |
+| 3. Authorization code grant | `GET /callback?code=...&state=...`                                                                       | Code sent via browser redirect                        |
+| 4. Access token request     | `POST /token` with `client_id`, `client_secret`, `redirect_uri`, `grant_type=authorization_code`, `code` | **Server-to-server, secure back-channel**             |
+| 5. Access token grant       | JSON: `access_token`, `token_type`, `expires_in`, `scope`                                                | Not exposed to browser                                |
+| 6. API call                 | `GET /userinfo` with `Authorization: Bearer <token>`                                                     | Server-side call                                      |
+| 7. Resource grant           | JSON: `username`, `email`, etc.                                                                          | Used to log user in                                   |
+
+### Key Parameters
+
+* `client_id` - public identifier, issued at registration
+* `client_secret` - private, proves client's identity during token exchange (**this is what makes this flow secure**)
+* `redirect_uri` - where code is sent; **common attack surface** (validation flaws)
+* `response_type=code` - signals this grant type
+* `state` - **anti-CSRF token**; unique/unguessable, tied to client session, must match on return
+* `grant_type=authorization_code` - tells `/token` endpoint which flow this is
+
+### Why it's secure
+
+Token + user data never touch the browser - only the one-time `code` does. Even if `code` leaks, it's useless without `client_secret`.
+
+***
+
+## 2. Implicit Grant (simpler, less secure - SPAs/native apps)
+
+![](<../.gitbook/assets/unknown (113).png>)
+
+**Core idea:** Skip the code step entirely - token comes back **directly** in the redirect, via browser.
+
+| Step                     | Request                                                                       | Notes                                       |
+| ------------------------ | ----------------------------------------------------------------------------- | ------------------------------------------- |
+| 1. Authorization request | Same as above but `response_type=token`                                       |                                             |
+| 2. Login + consent       | Same as code flow                                                             |                                             |
+| 3. Access token grant    | `GET /callback#access_token=..&token_type=..&expires_in=..&scope=..&state=..` | **Token in URL fragment**, not query string |
+| 4. API call              | `GET /userinfo` with `Authorization: Bearer <token>`                          | Happens via **browser**, not backend        |
+| 5. Resource grant        | JSON: `username`, `email`                                                     | Client JS extracts + uses this              |
+
+### Why fragment (`#`) not query (`?`)
+
+Fragments are **never sent to the server** by the browser (only used client-side) - deliberate design to limit token exposure to the URL/server logs. But client-side JS still must extract and handle it manually.
+
+### Why it's less secure
+
+* No `client_secret` involved at all
+* No secure back-channel - **everything** happens via browser redirects
+* Token is directly exposed to browser history, extensions, referer leaks, etc.
+* Used only because SPAs/native apps can't safely store a `client_secret`
+
+***
+
+## Quick Comparison
+
+|                                  | Authorization Code | Implicit           |
+| -------------------------------- | ------------------ | ------------------ |
+| `response_type`                  | `code`             | `token`            |
+| Token exposed to browser?        | No                 | Yes                |
+| Needs `client_secret`?           | Yes                | No                 |
+| Back-channel (server-to-server)? | Yes                | No                 |
+| Best for                         | Server-side apps   | SPAs / native apps |
+| Security                         | Higher             | Lower              |
+
+## Critical Recurring Concept
+
+> **`state` = CSRF protection.** Must be unguessable, tied to the user's session, and validated on return - regardless of grant type. Missing/weak `state` is one of the most common OAuth vulnerabilities.
+
+> The resource server (`/userinfo`) **must verify the token belongs to the requesting client** before returning data - this is the check that was missing in the lab you just solved.

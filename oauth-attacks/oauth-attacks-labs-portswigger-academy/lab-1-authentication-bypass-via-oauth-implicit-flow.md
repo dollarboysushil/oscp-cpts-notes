@@ -1,0 +1,149 @@
+# Lab 1  Authentication bypass via OAuth implicit flow
+
+This lab uses an OAuth service to allow users to log in with their social media account. Flawed validation by the client application makes it possible for an attacker to log in to other users' accounts without knowing their password.
+
+To solve the lab, log in to Carlos's account. His email address is `carlos@carlos-montoya.net`.
+
+You can log in with your own social media account using the following credentials: `wiener:peter`.
+
+***
+
+**Step 1 - Client initiates the OAuth flow**
+
+![](<../../.gitbook/assets/unknown (114).png>)
+
+```
+GET /auth?client_id=fk4n48ieuqntla805ydc4
+    &redirect_uri=https://YOUR-LAB-ID.web-security-academy.net/oauth-callback
+    &response_type=token
+    &nonce=637928109
+    &scope=openid%20profile%20email
+```
+
+**What's happening:** The blog app (the _Client_) redirects your browser to the OAuth server (the _Authorization Server_), asking it to authenticate you and hand back an **access token** directly (`response_type=token` = implicit flow, no code exchange step).
+
+* `client_id` - identifies the blog app to the OAuth server
+* `redirect_uri` - where to send you back afterward
+* `scope=openid profile email` - the blog is asking for your identity info
+* `nonce` - meant to bind the token to this specific request (replay protection)
+
+**Response:** Redirect to `/interaction/YY3GyzvSTLSepasg0vSyi` - the OAuth server's own login/consent flow, tracked by that interaction ID.
+
+***
+
+**Step 2 - User logs into the OAuth provider**
+
+![](<../../.gitbook/assets/unknown (115).png>)
+
+```
+POST /interaction/YY3GyzvSTLSepasg0vSyi/login
+```
+
+**What's happening:** Since you're not logged into the OAuth provider yet, it shows a login form. You submit credentials (`wiener:peter`) here - **this is you authenticating to the OAuth server itself**, not the blog.
+
+**Response:** 302 redirect back into the interaction flow, confirming login succeeded.
+
+***
+
+**Step 3 - Consent confirmation**
+
+![](<../../.gitbook/assets/unknown (116).png>)
+
+```
+POST /interaction/YY3GyzvSTLSepasg0vSyi/confirm
+(empty body)
+```
+
+**What's happening:** This is the "Allow this app to access your profile/email?" consent step. Empty body just means "yes, confirmed" (the interaction ID already carries the context).
+
+**Response:** 302 redirect to `/auth/YY3GyzvSTLSepasg0vSyi` - now the OAuth server proceeds to actually issue the token.
+
+***
+
+**Step 4 - Token issuance**
+
+![](<../../.gitbook/assets/unknown (117).png>)
+
+```
+GET /auth/YY3GyzvSTLSepasg0vSyi
+```
+
+**Response:**
+
+```
+Redirecting to https://YOUR-LAB-ID.web-security-academy.net/oauth-callback
+    #access_token=__kP_HG-gghob1RfxB5orOaMEeUfali1OT1Uk2xS1uY
+    &expires_in=3600
+    &token_type=Bearer
+    &scope=openid%20profile%20email
+```
+
+**What's happening:** The OAuth server has authenticated you (`wiener`) and generated a **valid access token proving that fact**. Because this is the implicit flow, the token is sent straight back in the **URL fragment** (`#...`), not a query string - fragments aren't sent to servers by browsers, so this is a deliberate design to keep the token from leaking to the redirect\_uri's server logs directly. It lands in your browser only.
+
+**Key point:** This token is legitimate and does correctly represent "wiener successfully logged in." Nothing wrong yet.
+
+***
+
+**Step 5 - Client-side JS reads the fragment and calls the backend**
+
+![](<../../.gitbook/assets/unknown (118).png>)
+
+```
+POST /authenticate
+{"email":"wiener@hotdog.com","username":"wiener","token":"__kP_HG-gghob..."}
+```
+
+**What's happening:** JavaScript on the `/oauth-callback` page extracts the `access_token` from the URL fragment. It **also independently knows/fetches your email and username** (likely from calling `/userinfo` client-side, or it was embedded somewhere), and packages all three into a POST to the blog's own backend to actually establish your logged-in session.
+
+**This is where the flaw lives.** The backend receives three pieces of data:
+
+* `token` - proof an OAuth login happened
+* `email`, `username` - **claims about who that login was for**
+
+The backend has two choices here: verify the token server-side to independently learn who it belongs to, or trust the `email`/`username` fields as given. **This lab's backend does the latter.**
+
+***
+
+**Step 6 - The exploit**
+
+You intercept this last request and change it to:
+
+![](<../../.gitbook/assets/unknown (119).png>)
+
+```json
+{"email":"carlos@carlos-montoya.net","username":"carlos","token":"__kP_HG-gghob..."}
+```
+
+**What's happening:** You still hold a 100% valid, real token - but it was issued for `wiener`. You're now claiming it belongs to `carlos` instead. Since the backend never calls back to the OAuth server to check "who does this token actually belong to?", it has no way to catch the mismatch. It just trusts the JSON and issues you a session as `carlos`.
+
+**Response:** A valid session token - you're now logged in as carlos, having never touched their password or a token issued for them.
+
+***
+
+#### Why This Is Possible - Root Cause
+
+The **access token and the identity claim are logically separate** in this exchange, but the backend treats them as if the client vouching for both together is sufficient. Correct design requires the **server itself** to resolve identity _from_ the token - not accept identity as a sibling parameter.
+
+```
+Token → (should go here) → Server calls /userinfo with token → gets real identity
+Token → (what actually happens) → Client says "trust me, it's this identity" → Server believes it
+```
+
+#### The Fix
+
+`/authenticate` should accept **only** the token:
+
+json
+
+```json
+{"token":"__kP_HG-gghob..."}
+```
+
+Then server-side:
+
+```
+GET /userinfo
+Authorization: Bearer __kP_HG-gghob...
+```
+
+→ get the real `email`/`username` back from the OAuth server directly, and use _that_ to create the session. There's then nothing left for an attacker to tamper with - the identity isn't attacker-supplied data at any point.
