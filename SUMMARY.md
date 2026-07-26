@@ -112,3 +112,5 @@
   * [Business Logic Vulnerability (Labs: Portswigger Academy)](business-logic-vulnerability/business-logic-vulnerability-labs-portswigger-academy.md)
 * [Information Disclosure](information-disclosure/README.md)
   * [Infromation Disclosure (Labs: Portswigger Academy)](information-disclosure/infromation-disclosure-labs-portswigger-academy.md)
+* [Race Conditions](race-conditions/README.md)
+  * [Race Conditions (Labs: Portswigger Academy)](race-conditions/race-conditions-labs-portswigger-academy.md)
