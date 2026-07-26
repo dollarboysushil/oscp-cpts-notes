@@ -108,3 +108,5 @@
     * [Lab 6 JWT authentication bypass via kid header path traversal](jwt-attacks/jwt-attack-labs/lab-6-jwt-authentication-bypass-via-kid-header-path-traversal.md)
 * [Authentication Attacks](authentication-attacks/README.md)
   * [Authentication Attacks LABS (Portswigger Academy)](authentication-attacks/authentication-attacks-labs-portswigger-academy.md)
+* [Business Logic Vulnerability](business-logic-vulnerability/README.md)
+  * [Business Logic Vulnerability (Labs: Portswigger Academy)](business-logic-vulnerability/business-logic-vulnerability-labs-portswigger-academy.md)
