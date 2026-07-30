@@ -8,9 +8,11 @@ You can log in to your own account using the following credentials: `wiener:pete
 
 ***
 
+Visit `Algorithm Confusion Attack, STEPS` section for detailed steps of this attack.
 
-
-
+{% content-ref url="../jwt-algorithm-confusion-vulnerabilities.md" %}
+[jwt-algorithm-confusion-vulnerabilities.md](../jwt-algorithm-confusion-vulnerabilities.md)
+{% endcontent-ref %}
 
 **Vuln:** Server accepts both RS256 and HS256, using the same key variable for both - allowing its own public key to be reused as an HMAC secret.
 
