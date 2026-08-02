@@ -91,6 +91,8 @@
     * [Tanuki](web-application-pentest/bugforge/xxe/tanuki.md)
   * [Race Condition](web-application-pentest/bugforge/race-condition/README.md)
     * [Shady Oaks Financial](web-application-pentest/bugforge/race-condition/shady-oaks-financial.md)
+  * [JWT Secret Key Brute-Forcing](web-application-pentest/bugforge/jwt-secret-key-brute-forcing/README.md)
+    * [Cheesy Does it - cheesy-007](web-application-pentest/bugforge/jwt-secret-key-brute-forcing/cheesy-does-it-cheesy-007.md)
 * [OAuth Attacks](web-application-pentest/oauth-attacks/README.md)
   * [OAuth Grant Types](web-application-pentest/oauth-attacks/oauth-grant-types.md)
   * [OpenID Connect](web-application-pentest/oauth-attacks/openid-connect.md)
