@@ -61,6 +61,7 @@
     * [Ottergram](web-application-pentest/bugforge/sql-injection-sqli/ottergram.md)
     * [CopyPasta](web-application-pentest/bugforge/sql-injection-sqli/copypasta.md)
     * [Sokudo - sokudo-004](web-application-pentest/bugforge/sql-injection-sqli/sokudo-sokudo-004.md)
+    * [Shady Oaks Financial  - shadyoaks-005](web-application-pentest/bugforge/sql-injection-sqli/shady-oaks-financial-shadyoaks-005.md)
   * [Business Logic Flaw](web-application-pentest/bugforge/business-logic-flaw/README.md)
     * [Cheesy Does It](web-application-pentest/bugforge/business-logic-flaw/cheesy-does-it.md)
     * [Cafe Club](web-application-pentest/bugforge/business-logic-flaw/cafe-club.md)
