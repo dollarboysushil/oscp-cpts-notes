@@ -78,6 +78,7 @@
     * [Cheesy Does It](web-application-pentest/bugforge/broken-access-control/cheesy-does-it.md)
     * [CopyPasta](web-application-pentest/bugforge/broken-access-control/copypasta.md)
     * [Ottergram](web-application-pentest/bugforge/broken-access-control/ottergram.md)
+    * [Vaultly - vaultly-002](web-application-pentest/bugforge/broken-access-control/vaultly-vaultly-002.md)
   * [Local File Inclusion (LFI)](web-application-pentest/bugforge/local-file-inclusion-lfi/README.md)
     * [Cafe Club](web-application-pentest/bugforge/local-file-inclusion-lfi/cafe-club.md)
   * [SSRF (Server-Side Request Forgery)](web-application-pentest/bugforge/ssrf-server-side-request-forgery/README.md)
